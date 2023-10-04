@@ -11,3 +11,4 @@ Clone the repo on your computer
 * Change a file
 * Commit the changes
 * Push the changes
+* Check the changes on Github
