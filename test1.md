@@ -1,4 +1,6 @@
-Test
+# Test
+## Introduction
+This file shows basic ideas about markdown
 
-Halleluja
-Amen
+## Formatting
+Formatting can be done by putting *special* signs **around** words. 
