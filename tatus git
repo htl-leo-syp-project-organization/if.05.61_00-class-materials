@@ -1,0 +1,23 @@
+[33mcommit 8d6e87adf329b2c0f11330824d5ad026e1501d22[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Your Nameriosarah <you@example.coms.rio@students.htl-leonding.ac.at>
+Date:   Wed Oct 4 18:44:29 2023 +0200
+
+    Another important change
+
+[33mcommit 418c4e29c9026cf91fcba0f0b40d1876a5dc0e05[m
+Author: Your Nameriosarah <you@example.coms.rio@students.htl-leonding.ac.at>
+Date:   Wed Oct 4 18:42:49 2023 +0200
+
+    have changed two files
+
+[33mcommit 0a8b27d80e7349283f4bd6d393aeb16fb3d5e7d3[m
+Author: Peter Bauer <peter.bauer@bajupa.com>
+Date:   Wed Sep 20 18:46:54 2023 +0200
+
+    Added first description
+
+[33mcommit b09d1b2c11dc33c4ce84d4ae076a8d6dffd610a0[m
+Author: Peter Bauer <peter.bauer@bajupa.com>
+Date:   Wed Sep 20 18:36:53 2023 +0200
+
+    Initial commit
