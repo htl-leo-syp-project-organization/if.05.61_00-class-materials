@@ -50,34 +50,88 @@ rectangle ATM {
 @enduml
 ```
 
-## A Sample Activity Diagram
-```plantuml
+## A Sample Activity Diagram: Money Withdrawal from an ATM
+```
 |Customer|
 start
 repeat
 :Enter PIN;
 repeat while (pin ok **and** number of attempts <= 3?) is (no)
-if (number of attempts?) then (>3)
+if (number of attempts?) then (<=3)
+    :Enter amount;
+    |ATM|
+    :Check Balance; <<output>>
+    :Approved; <<input>>
+    :Withdraw money; <<output>>
+    :Return card;
+    :Handout money;
+else (> 3)
     |ATM|
     :Report error;
     :Confiscate card;
-else (<=3)
-|Customer|
-:Enter amount;
-|ATM|
-:Check Balance; <<output>>
-:Return card;
-:Handout money;
 endif
+|Customer|
 stop
-
+|ATM|
+:not approved; <<input>>
+:Report error;
+:Confiscate card;
+stop
 |Bank|
 start
-:Check Balance;
+:Check Balance; <<input>>
 if (balance ok?) then (yes)
     :approved; <<output>>
 else (no)
     :not approved; <<output>>
 endif
 stop
+
+start
+:Withdraw money; <<input>>
+:Withdraw from account; 
+stop
+```
+
+```plantuml
+|Customer|
+start
+repeat
+:Enter PIN;
+repeat while (pin ok **and** number of attempts <= 3?) is (no)
+if (number of attempts?) then (<=3)
+    :Enter amount;
+    |ATM|
+    :Check Balance; <<output>>
+    :Approved; <<input>>
+    :Withdraw money; <<output>>
+    :Return card;
+    :Handout money;
+else (> 3)
+    |ATM|
+    :Report error;
+    :Confiscate card;
+endif
+|Customer|
+stop
+|ATM|
+:not approved; <<input>>
+:Report error;
+:Confiscate card;
+stop
+|Bank|
+start
+:Check Balance; <<input>>
+if (balance ok?) then (yes)
+    :approved; <<output>>
+else (no)
+    :not approved; <<output>>
+endif
+stop
+
+start
+:Withdraw money; <<input>>
+:Withdraw from account; 
+stop
+
 ```
