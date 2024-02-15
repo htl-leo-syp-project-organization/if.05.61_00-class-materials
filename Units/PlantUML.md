@@ -5,9 +5,9 @@
 1. Run the Graphviz installer and follow the installation instructions.
 1. Download PlantUML from the official website: https://plantuml.com/download
 1. Extract the downloaded PlantUML zip file to a desired location on your computer.
-1. Add the location of the Graphviz bin folder to the system's PATH environment variable. This is usually C:\Program Files\Graphviz\bin.
+1. Add the location of the Graphviz bin folder to the system's PATH environment variable. This is usually `C:\Program Files\Graphviz\bin`.
 Open a command prompt and navigate to the location where you extracted PlantUML.
-1. Run the command java -jar plantuml.jar -version to verify that PlantUML is installed correctly.
+1. Run the command `java -jar plantuml.jar -version` to verify that PlantUML is installed correctly.
    
 That's it! You have successfully installed PlantUML and its dependencies on Windows. You can now use PlantUML to generate UML diagrams in your Markdown files.
 
