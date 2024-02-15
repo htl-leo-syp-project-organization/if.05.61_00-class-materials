@@ -1,6 +1,6 @@
 # Markdown
-## Show Enumerations
-It is possible to enumerate some lines:
+## Enumerations
+It is possible to enumerate some lines. Numbering is done within markdown automatically, therefore, it is sufficient to prefix each numbering line with some number:
 
 ```md
 1. First item
@@ -12,6 +12,21 @@ Result:
 1. First item
 1. Griasdi
 1. Pfiati
+
+Furthermore one could define the start number via the number given for the first enumeration line. Further numbers are again generated automatically no matter which number given in markdown:
+
+```md
+2. First item
+1. Griasdi
+1. Pfiati
+```
+
+Result:
+
+2. First item
+1. Griasdi
+1. Pfiati
+
 
 ## Tables
 ```md
