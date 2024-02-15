@@ -26,6 +26,18 @@ In order to see PlantUML diagrams in the VS Code markdown preview the extension 
 - https://plantuml.com/class-diagram
 
 ## A Sample Use Case Diagram
+```
+@startuml
+left to right direction
+rectangle ATM {
+    usecase "Withdraw Money" as wm
+    usecase "Refill Money" as rm
+}
+:Administrator: -up-> rm
+:Customer: -down-> wm
+@enduml
+```
+
 ```plantuml
 @startuml
 left to right direction

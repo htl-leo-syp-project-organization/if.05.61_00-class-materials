@@ -8,4 +8,7 @@ Since material of this course is held in three different study programs the diff
 - [Project Proposal](Units/ProjectProposal.md)
 - [Version Control](Units/VersionControl.md)
 - [Markdown](Units/Markdown.md)
+- [UML Use Case Diagrams](Units/UMLUseCaseDiagrams.md)
+- [UML Activity Diagrams](Units/UMLActivityDiagrams.md)
+- [UML State Diagrams](Units/UMLStateDiagrams.md)
 - [PlantUML](Units/PlantUML.md)
