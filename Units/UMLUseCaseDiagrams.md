@@ -1,4 +1,5 @@
 # UML Use Case Diagrams
+Content can be taken from the presentation provided as pdf.
 ## A Simple Use Case Diagram
 ```plantuml
 @startuml
