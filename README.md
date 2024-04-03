@@ -12,3 +12,4 @@ Since material of this course is held in three different study programs the diff
 - [UML Activity Diagrams](Units/UMLActivityDiagrams.md)
 - [UML State Diagrams](Units/UMLStateDiagrams.md)
 - [PlantUML](Units/PlantUML.md)
+- [Effort Estimation](Units/EffortEstimation.md)
