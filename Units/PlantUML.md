@@ -15,7 +15,7 @@ That's it! You have successfully installed PlantUML and its dependencies on Wind
 Using homebrew is recommended: In the terminal type `brew install plantuml`. This installs the package including all its dependencies.
 
 ### VS Code
-In order to see PlantUML diagrams in the VS Code markdown preview the extension *Markdown Plantuml Review* must be installed.
+In order to see PlantUML diagrams in the VS Code markdown preview the extension *Markdown Plantuml Preview* must be installed.
 
 
 ## PlantUML Reference Guide
@@ -94,6 +94,7 @@ stop
 ```
 
 ```plantuml
+@startuml
 |Customer|
 start
 repeat
@@ -115,7 +116,7 @@ endif
 |Customer|
 stop
 |ATM|
-:not approved; <<input>>
+:Not approved; <<input>>
 :Report error;
 :Confiscate card;
 stop
@@ -123,9 +124,9 @@ stop
 start
 :Check Balance; <<input>>
 if (balance ok?) then (yes)
-    :approved; <<output>>
+    :Approved; <<output>>
 else (no)
-    :not approved; <<output>>
+    :Not approved; <<output>>
 endif
 stop
 
@@ -133,5 +134,34 @@ start
 :Withdraw money; <<input>>
 :Withdraw from account; 
 stop
+@enduml
+```
 
+## A Sample State Diagram
+```plantuml
+@startuml
+hide empty description
+
+state "Ready for Pin" as readyForPin
+state "Ready for Amount" as readyForAmount
+state "Waiting for Bank Approval" as readyForApproval
+state "Waiting for Card Removal" as readyForCardRemoval
+state "Waiting for Money Removal" as readyForMoneyRemoval
+
+[*] -->  Idle
+Idle --> readyForPin : Insert Card
+readyForPin --> Idle : Abort
+
+readyForPin --> readyForAmount : Enter Correct Pin
+readyForPin --> Error : Enter Wrong Pin
+readyForAmount --> Idle : Abort
+
+readyForAmount --> readyForApproval : Enter Amount
+readyForApproval --> Idle : Abort
+
+readyForApproval --> readyForCardRemoval : Bank approved
+readyForCardRemoval --> readyForMoneyRemoval : User removed card
+
+readyForMoneyRemoval --> Idle : User removed money
+@enduml
 ```
