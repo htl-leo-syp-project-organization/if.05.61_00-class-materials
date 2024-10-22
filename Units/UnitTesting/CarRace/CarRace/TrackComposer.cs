@@ -13,7 +13,7 @@ public class TrackComposer
     private Section AddFirstSection(int[,] sectionInformation)
     {
         var firstSection = new Section(sectionInformation[0, 0], sectionInformation[0, 1]);
-        firstSection.ConnectAfter(firstSection);
+        firstSection.ConnectMeAfter(firstSection);
         _sections.Add(firstSection);
         return firstSection;
     }
@@ -30,7 +30,7 @@ public class TrackComposer
     private Section AddSection(int[,] sectionInformation, int i, Section previousSection)
     {
         var newSection = new Section(sectionInformation[i, 0], sectionInformation[i, 1]);
-        newSection.ConnectAfter(previousSection);
+        newSection.ConnectMeAfter(previousSection);
         _sections.Add(newSection);
         previousSection = newSection;
         return previousSection;
@@ -40,7 +40,7 @@ public class TrackComposer
     {
         var firstSection = _sections.First();
         var lastSection = _sections.Last();
-        lastSection.ConnectBefore(firstSection);
+        lastSection.ConnectMeBefore(firstSection);
     }
 
     public Section GetSection(int i)

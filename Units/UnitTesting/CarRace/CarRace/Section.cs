@@ -2,7 +2,14 @@ namespace CarRace;
 
 public class Section
 {
-    public int Length { get; set; } = 10;
+    /// <summary>
+    /// The length of the section in meters
+    /// </summary>
+    public int Length { get; set; } = 100;
+    
+    /// <summary>
+    /// The maximum speed possible for the section in km/h
+    /// </summary>
     public int MaxSpeed { get; set; } = 150;
     public Section? NextSection { get; private set; }
     public Section? PreviousSection { get; private set; }
@@ -18,13 +25,13 @@ public class Section
     }
     public Section(int length, int maxSpeed) { Length = length; MaxSpeed = maxSpeed; }
 
-    public void ConnectAfter(Section previousSection)
+    public void ConnectMeAfter(Section previousSection)
     {
         PreviousSection = previousSection;
         previousSection.NextSection = this;
     }
 
-    public void ConnectBefore(Section nextSection)
+    public void ConnectMeBefore(Section nextSection)
     {
         NextSection = nextSection;
         nextSection.PreviousSection = this;

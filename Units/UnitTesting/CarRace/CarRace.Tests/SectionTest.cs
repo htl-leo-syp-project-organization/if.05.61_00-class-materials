@@ -13,7 +13,7 @@ public class SectionTest
     public void ItShouldHaveADefaultLengthAndMaxSpeed_GivenConstructed()
     {
         var section = new Section();
-        Assert.AreEqual(10, section.Length);
+        Assert.AreEqual(100, section.Length);
         Assert.AreEqual(150, section.MaxSpeed);
     }
 
@@ -21,8 +21,8 @@ public class SectionTest
     [TestMethod]
     public void ItShouldHaveTheGivenLengthAndMaxSpeed_GivenConstructedWithParameters()
     {
-        const int someLength = 5;
-        const int someSpeed = 10;
+        const int someLength = 50;
+        const int someSpeed = 100;
         var section = new Section(someLength, someSpeed);
         
         Assert.AreEqual(someLength, section.Length);
@@ -32,7 +32,7 @@ public class SectionTest
     [TestMethod]
     public void ItShouldHaveTheGivenLengthAndMaxSpeed_GivenConstructedWithAnArray()
     {
-        int[] lengthAndSpeed = new int[] { 8, 120 };
+        int[] lengthAndSpeed = new int[] { 800, 120 };
 
         var section = new Section(lengthAndSpeed);
         
@@ -46,7 +46,7 @@ public class SectionTest
         var section1 = new Section();
         var section2 = new Section();
         
-        section1.ConnectBefore(section2); // section 1 - section 2
+        section1.ConnectMeBefore(section2); // section 1 - section 2
         Assert.AreEqual(section2, section1.NextSection);
         Assert.AreEqual(section1, section2.PreviousSection);
     }
@@ -58,7 +58,7 @@ public class SectionTest
         var section1 = new Section();
         var section2 = new Section();
         
-        section1.ConnectAfter(section2); // section2 - section1
+        section1.ConnectMeAfter(section2); // section2 - section1
         Assert.AreEqual(section2, section1.PreviousSection);
         Assert.AreEqual(section1, section2.NextSection);
     }
