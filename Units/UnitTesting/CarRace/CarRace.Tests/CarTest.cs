@@ -49,8 +49,11 @@ public class CarTest
 
         private int _dots;
         public int Dots { get; private set; }
+        
+        public bool WasRolled { get; private set; } = false;
         public void Roll()
         {
+            WasRolled = true;
             Dots = _dots;
         }
     }
@@ -64,5 +67,17 @@ public class CarTest
         car.Accellerate();
         
         Assert.AreEqual(250, car.Speed);
+    }
+
+
+    [TestMethod]
+    public void ItShouldRollTheDice_GivenAccelerateIsCalled()
+    {
+        var dice = new FakeDice(5);
+        var car = new Car(dice);
+        
+        car.Accellerate();
+
+        Assert.IsTrue(dice.WasRolled);
     }
 }
