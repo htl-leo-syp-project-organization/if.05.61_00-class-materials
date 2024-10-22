@@ -29,6 +29,16 @@ public class SectionTest
         Assert.AreEqual(someSpeed, section.MaxSpeed);
     }
 
+    [TestMethod]
+    public void ItShouldHaveTheGivenLengthAndMaxSpeed_GivenConstructedWithAnArray()
+    {
+        int[] lengthAndSpeed = new int[] { 8, 120 };
+
+        var section = new Section(lengthAndSpeed);
+        
+        Assert.AreEqual(lengthAndSpeed[0], section.Length);
+        Assert.AreEqual(lengthAndSpeed[1], section.MaxSpeed);
+    }
 
     [TestMethod]
     public void ItShouldKnowItsNextSection_GivenConnectedBeforeAnotherSection()

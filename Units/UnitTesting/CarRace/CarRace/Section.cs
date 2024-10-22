@@ -9,6 +9,12 @@ public class Section
 
     public Section()
     {
+        
+    }
+    public Section(int[] lengthAndSpeed)
+    {
+        Length = lengthAndSpeed[0];
+        MaxSpeed = lengthAndSpeed[1];
     }
     public Section(int length, int maxSpeed) { Length = length; MaxSpeed = maxSpeed; }
 
