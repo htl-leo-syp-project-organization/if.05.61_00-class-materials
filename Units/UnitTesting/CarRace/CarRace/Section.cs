@@ -28,12 +28,10 @@ public class Section
     public void ConnectMeAfter(Section previousSection)
     {
         PreviousSection = previousSection;
-        
-        var oldLinkToNextSection = previousSection.NextSection;
+        NextSection = previousSection.NextSection;
         previousSection.NextSection = this;
-        NextSection = oldLinkToNextSection;
-        if (oldLinkToNextSection != null)
-            oldLinkToNextSection.PreviousSection = this;
+        if (NextSection != null)
+            NextSection.PreviousSection = this;
     }
 
     public void ConnectMeBefore(Section nextSection)
