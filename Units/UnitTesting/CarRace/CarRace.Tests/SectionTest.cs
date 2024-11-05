@@ -16,8 +16,7 @@ public class SectionTest
         Assert.AreEqual(100, section.Length);
         Assert.AreEqual(150, section.MaxSpeed);
     }
-
-
+    
     [TestMethod]
     public void ItShouldHaveTheGivenLengthAndMaxSpeed_GivenConstructedWithParameters()
     {
@@ -50,8 +49,7 @@ public class SectionTest
         Assert.AreEqual(section2, section1.NextSection);
         Assert.AreEqual(section1, section2.PreviousSection);
     }
-
-
+    
     [TestMethod]
     public void ItShouldKnowItsPreviousSection_GivenConnectedAfterAnotherSection()
     {
@@ -61,5 +59,19 @@ public class SectionTest
         section1.ConnectMeAfter(section2); // section2 - section1
         Assert.AreEqual(section2, section1.PreviousSection);
         Assert.AreEqual(section1, section2.NextSection);
+    }
+
+    [TestMethod]
+    public void ItShouldInsertANewSectionBetweenTwoConnectedSections_GivenConnectAfterMeIsCalledForTheFirstSection()
+    {
+        var section1 = new Section();
+        var section2 = new Section();
+        var sectionToInsert = new Section();
+        section2.ConnectMeAfter(section1);
+        
+        sectionToInsert.ConnectMeAfter(section1);
+        
+        Assert.AreEqual(section2, sectionToInsert.NextSection);
+        Assert.AreEqual(sectionToInsert, section2.PreviousSection);
     }
 }
