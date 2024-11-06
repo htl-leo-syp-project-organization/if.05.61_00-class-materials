@@ -53,6 +53,18 @@ class Section {
     PreviousSection: Section
     ConnectMeAfter(section: Section)
     ConnectMeBefore(section: Section)
+    Locked(): LockedSection
+}
+
+Section "1" o-- "1" LockedSection
+
+class LockedSection {
+    Length: Integer
+    MaxSpeed: Integer
+    NextSection: LockedSection
+    PreviousSection: LockedSection
+
+    LockedSection(Section section)
 }
 
 class Track

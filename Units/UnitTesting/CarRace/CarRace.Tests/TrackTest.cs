@@ -17,7 +17,7 @@ public class TrackTest
         
         track.Add(someSection);
         
-        Assert.AreEqual(someSection, track.StartSection);
+        Assert.AreEqual(someSection.Locked(), track.StartSection);
     }
 
     [TestMethod]
