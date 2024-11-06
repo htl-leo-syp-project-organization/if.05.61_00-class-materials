@@ -49,6 +49,30 @@ public class SectionTest
         Assert.AreEqual(section2, section1.NextSection);
         Assert.AreEqual(section1, section2.PreviousSection);
     }
+
+    [TestMethod]
+    public void ItShouldHaveNoPreviousSection_GivenConnectedBeforeAnotherSection()
+    {
+        var section1 = new Section();
+        var section2 = new Section();
+        
+        section1.ConnectMeBefore(section2);
+        
+        Assert.IsNull(section1.PreviousSection);
+        Assert.IsNull(section2.NextSection);
+    }
+
+    [TestMethod]
+    public void ItShouldHaveNoNextSection_GivenConnectedAfterAnotherSection()
+    {
+        var section1 = new Section();
+        var section2 = new Section();
+        
+        section1.ConnectMeAfter(section2);
+        
+        Assert.IsNull(section1.NextSection);
+        Assert.IsNull(section2.PreviousSection);
+    }
     
     [TestMethod]
     public void ItShouldKnowItsPreviousSection_GivenConnectedAfterAnotherSection()
