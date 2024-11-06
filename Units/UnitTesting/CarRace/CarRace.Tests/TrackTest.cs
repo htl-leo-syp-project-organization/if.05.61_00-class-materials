@@ -10,13 +10,24 @@ public class TrackTest
 {
 
     [TestMethod]
-    public void ItShouldHoldTheStartSection_GivenOneTrackIsAdded()
+    public void ItShouldHoldTheStartSection_GivenOneSectionIsAdded()
     {
         var track = new Track();
-
         var someSection = new Section();
+        
         track.Add(someSection);
         
         Assert.AreEqual(someSection, track.StartSection);
+    }
+
+    [TestMethod]
+    public void ItShouldProvideTheLengthOfTheSection_GivenOneSectionIsAdded()
+    {
+        var track = new Track();
+        var someSection = new Section();
+        
+        track.Add(someSection);
+        
+        Assert.AreEqual(someSection.Length, track.Length);
     }
 }
