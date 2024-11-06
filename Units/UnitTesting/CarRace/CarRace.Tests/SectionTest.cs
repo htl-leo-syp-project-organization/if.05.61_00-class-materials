@@ -88,4 +88,31 @@ public class SectionTest
         Assert.AreEqual(section1, sectionToInsert.PreviousSection);
         Assert.AreEqual(sectionToInsert, section1.NextSection);
     }
+
+    [TestMethod]
+    public void ItShouldReturnALockedVersionOfItself_GivenLockIsCalled()
+    {
+        var someLength = 500;
+        var someSpeed = 360;
+        var section = new Section(someLength, someSpeed);
+
+        LockedSection lockedSection = section.Locked();
+        
+        Assert.AreEqual(section.Length, lockedSection.Length);
+        Assert.AreEqual(section.MaxSpeed, lockedSection.MaxSpeed);
+    }
+
+    [TestMethod]
+    public void LockedVersionsShouldReferToCorrespondingLockedVersions()
+    {
+        var section1 = new Section(50, 100);
+        var section2 = new Section(200, 250);
+        section1.ConnectMeBefore(section2);
+
+        var lockedSection1 = section1.Locked();
+        var lockedSection2 = section2.Locked();
+        
+        Assert.AreEqual(lockedSection1.NextSection, lockedSection2);
+        Assert.AreEqual(lockedSection1, lockedSection2.PreviousSection);
+    }
 }

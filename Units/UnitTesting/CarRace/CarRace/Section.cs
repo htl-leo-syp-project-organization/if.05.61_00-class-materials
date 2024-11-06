@@ -42,4 +42,18 @@ public class Section
         if (PreviousSection != null)
             PreviousSection.NextSection = this;
     }
+
+    public LockedSection Locked()
+    {
+        return new LockedSection(this);
+    }
 }
+
+public record LockedSection(Section Section)
+{
+    public int Length => Section.Length;
+    public int MaxSpeed => Section.MaxSpeed;
+    public LockedSection? NextSection => Section.NextSection?.Locked();
+    public LockedSection? PreviousSection => Section.PreviousSection?.Locked();
+}
+
