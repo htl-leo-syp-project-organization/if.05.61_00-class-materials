@@ -6,14 +6,17 @@ namespace CarRace.Tests;
 
 [TestClass]
 [TestSubject(typeof(Track))]
-
-[Ignore]
 public class TrackTest
 {
 
     [TestMethod]
-    public void ItShouldAdd()
+    public void ItShouldHoldTheStartSection_GivenOneTrackIsAdded()
     {
+        var track = new Track();
+
+        var someSection = new Section();
+        track.Add(someSection);
         
+        Assert.AreEqual(someSection, track.StartSection);
     }
 }

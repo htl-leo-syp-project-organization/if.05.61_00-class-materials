@@ -37,6 +37,9 @@ public class Section
     public void ConnectMeBefore(Section nextSection)
     {
         NextSection = nextSection;
+        PreviousSection = nextSection.PreviousSection;
         nextSection.PreviousSection = this;
+        if (PreviousSection != null)
+            PreviousSection.NextSection = this;
     }
 }

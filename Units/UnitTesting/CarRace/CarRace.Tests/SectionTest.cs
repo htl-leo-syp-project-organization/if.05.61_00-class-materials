@@ -74,4 +74,18 @@ public class SectionTest
         Assert.AreEqual(section2, sectionToInsert.NextSection);
         Assert.AreEqual(sectionToInsert, section2.PreviousSection);
     }
+
+    [TestMethod]
+    public void ItShouldInsertANewSectionBetweenTwoConnectedSections_GivenConnectBeforeMeIsCalledForTheSecondSection()
+    {
+        var section1 = new Section();
+        var section2 = new Section();
+        var sectionToInsert = new Section();
+        section2.ConnectMeAfter(section1);
+        
+        sectionToInsert.ConnectMeBefore(section2);
+        
+        Assert.AreEqual(section1, sectionToInsert.PreviousSection);
+        Assert.AreEqual(sectionToInsert, section1.NextSection);
+    }
 }

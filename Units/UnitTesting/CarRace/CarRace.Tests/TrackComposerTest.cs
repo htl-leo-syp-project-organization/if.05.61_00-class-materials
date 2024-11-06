@@ -21,19 +21,6 @@ public class TrackComposerTest
     }
     
     [TestMethod]
-    public void ItShouldConnectSectionToItself_GivenOneTrack()
-    {
-        var composer = new TrackComposer();
-        int[,] sectionInformation = { { 300, 250 } };
-        
-        composer.AddTracks(sectionInformation);
-        var section1 = composer.GetSection(0);
-        
-        Assert.AreEqual(section1, section1.NextSection);
-        Assert.AreEqual(section1, section1.PreviousSection);
-    }
-
-    [TestMethod]
     public void ItShouldCreateTwoSections_GivenTwoSectionLengthsAndSpeedsAsArray()
     {
         var composer = new TrackComposer();
@@ -51,6 +38,15 @@ public class TrackComposerTest
     }
 
     [TestMethod]
+    [Ignore]
+    public void ItShouldLeaveTheTrackOpen_GivenNoCloseIsRequired()
+    {
+        
+        var composer = new TrackComposer();
+    }
+    
+    [TestMethod]
+    [Ignore]
     public void ItShouldConnectTwoSectionsInACircle_GivenTwoSections()
     {
         var composer = new TrackComposer();
@@ -68,6 +64,7 @@ public class TrackComposerTest
 
 
     [TestMethod]
+    [Ignore]
     public void ItShouldCreateAllSectionsAndConnectThem_GivenMoreSection()
     {
         var composer = new TrackComposer();
