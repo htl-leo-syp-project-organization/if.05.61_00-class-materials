@@ -2,7 +2,7 @@ namespace CarRace;
 
 public class RaceController
 {
-    public Track track { get; set; }
+    public Track Track { get; set; }
 
     public int AddCar(Car car)
     {
@@ -22,6 +22,6 @@ public class RaceController
     
     public Position GetPosition(int carNumber)
     {
-        return new Position(new LockedSection(new Section()), 0);
+        return new Position(Track.StartSection!, 0);
     }
 }

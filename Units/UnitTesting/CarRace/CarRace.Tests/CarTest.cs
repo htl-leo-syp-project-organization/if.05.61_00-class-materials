@@ -64,7 +64,7 @@ public class CarTest
         var dice = new FakeDice(5);
         var car = new Car(dice);
         car.Gear = 5;
-        car.Accellerate();
+        car.Accelerate();
         
         Assert.AreEqual(250, car.Speed);
     }
@@ -76,7 +76,7 @@ public class CarTest
         var dice = new FakeDice(5);
         var car = new Car(dice);
         
-        car.Accellerate();
+        car.Accelerate();
 
         Assert.IsTrue(dice.WasRolled);
     }

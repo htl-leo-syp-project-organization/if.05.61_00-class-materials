@@ -25,14 +25,14 @@ public class Car
         }
     }
 
-    public void Accellerate()
+    public void Accelerate()
     {
         _dice.Roll();
         Speed = _dice.Dots * Gear * 10;
     }
 }
 
-class DefaultDice : IDice
+internal class DefaultDice : IDice
 {
     readonly Random _random = new Random();
     public int Dots { get; private set; }
