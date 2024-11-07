@@ -72,12 +72,12 @@ Track : StartSection: Section
 Track : Length: Integer
 Track "1" o-- "*" Section
 
-class GameController {
+class RaceController {
     CurrentCar: Car
     Move()
 }
-GameController "1" o-- "*" Car
-GameController "1" o-- "1" Track
+RaceController "1" o-- "*" Car
+RaceController "1" o-- "1" Track
 
 @enduml
 ```
