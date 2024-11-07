@@ -39,8 +39,9 @@ public class TrackTest
         
         track.Add(someSection1);
         track.Add(someSection2);
-        
-        Assert.AreEqual(someSection1.Length + someSection2.Length, track.Length);
+
+        var totalTrackLength = someSection1.Length + someSection2.Length;
+        Assert.AreEqual(totalTrackLength, track.Length);
     }
 
     [TestMethod]
@@ -71,6 +72,19 @@ public class TrackTest
         var track = new Track();
         track.Close();
         Assert.IsNull(track.StartSection);
+    }
+
+    [TestMethod]
+    public void ItShouldConnectSectionToItself_GivenCloseIsCalledOnAOneSectionTrack()
+    {
+        var track = new Track();
+        track.Add(new Section());
+        
+        track.Close();
+        var section = track.StartSection;
+        
+        Assert.AreEqual(section, section?.NextSection);
+        Assert.AreEqual(section, section?.PreviousSection);
     }
 
     [TestMethod]
