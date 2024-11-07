@@ -73,4 +73,20 @@ public class TrackTest
         track.Close();
         Assert.IsNull(track.StartSection);
     }
+
+    [TestMethod]
+    public void ItShouldProvideACorrectLength_GivenTrackIsClosed()
+    {
+        var track = new Track();
+        var someSection1 = new Section(100, 150);
+        var someSection2 = new Section(200, 200);
+        var someSection3 = new Section(300, 260);
+        track.Add(someSection1);
+        track.Add(someSection2);
+        track.Add(someSection3);
+        
+        track.Close();
+        var totalTrackLength = someSection1.Length + someSection2.Length + someSection3.Length;
+        Assert.AreEqual(totalTrackLength, track.Length);
+    }
 }

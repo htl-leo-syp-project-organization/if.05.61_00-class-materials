@@ -12,15 +12,15 @@ public class Track
         {
             var currentSection = _startSection;
             var length = 0;
-            while (currentSection != null)
+            while (currentSection != null && currentSection != _endSection)
             {
                 length += currentSection.Length;
                 currentSection = currentSection.NextSection;
             }
-            return length;
+            return length + _endSection?.Length ?? 0;
         }
     }
-
+    
     public void Add(Section section)
     {
         if (_startSection == null)
