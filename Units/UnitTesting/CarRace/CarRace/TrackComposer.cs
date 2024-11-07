@@ -7,7 +7,10 @@ public class TrackComposer
 
     public void ComposeFrom((int, int)[] sectionInformation)
     {
-        this.Track.Add(new Section(sectionInformation[0].Item1, sectionInformation[0].Item2));
+        foreach (var section in sectionInformation)
+        {
+            this.Track.Add(new Section(section));
+        }
     }
     public void AddTracks(int[,] sectionInformation)
     {

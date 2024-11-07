@@ -26,25 +26,32 @@ public class TrackComposerTest
     public void ItShouldCreateTwoSections_GivenTwoSectionLengthsAndSpeedsAsArray()
     {
         var composer = new TrackComposer();
-        int[,] sectionInformation = { { 300, 250 }, { 500, 300 } };
+        var sectionInformation = new[]{ (300, 250), (500, 300) };
         
-        composer.AddTracks(sectionInformation);
-        var section1 = composer.GetSection(0);
-        var section2 = composer.GetSection(1);
+        composer.ComposeFrom(sectionInformation);
+        var track = composer.Track;
+        var section1 = track.StartSection;
+        var section2 = section1?.NextSection;
         
-        Assert.AreEqual(sectionInformation[0, 0], section1.Length);
-        Assert.AreEqual(sectionInformation[0, 1], section1.MaxSpeed);
+        Assert.AreEqual(sectionInformation[0].Item1, section1?.Length);
+        Assert.AreEqual(sectionInformation[0].Item2, section1?.MaxSpeed);
         
-        Assert.AreEqual(sectionInformation[1, 0], section2.Length);
-        Assert.AreEqual(sectionInformation[1, 1], section2.MaxSpeed);
+        Assert.AreEqual(sectionInformation[1].Item1, section2?.Length);
+        Assert.AreEqual(sectionInformation[1].Item2, section2?.MaxSpeed);
     }
 
     [TestMethod]
-    [Ignore]
     public void ItShouldLeaveTheTrackOpen_GivenNoCloseIsRequired()
     {
         
         var composer = new TrackComposer();
+        var sectionInformation = new[] { (300, 250), (500, 300), (50, 100), (800, 360) };
+        
+        composer.ComposeFrom(sectionInformation);
+        var lastSection = composer.Track.StartSection?.NextSection?.NextSection?.NextSection;
+        
+        Assert.IsNull(composer.Track.StartSection!.PreviousSection);
+        Assert.IsNull(lastSection?.NextSection);
     }
     
     [TestMethod]
