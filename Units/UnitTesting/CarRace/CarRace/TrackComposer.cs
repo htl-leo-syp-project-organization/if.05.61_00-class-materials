@@ -3,6 +3,12 @@ namespace CarRace;
 public class TrackComposer
 {
     private readonly List<Section> _sections = new List<Section>();
+    public Track Track { get; set; } = new Track();
+
+    public void ComposeFrom((int, int)[] sectionInformation)
+    {
+        this.Track.Add(new Section(sectionInformation[0].Item1, sectionInformation[0].Item2));
+    }
     public void AddTracks(int[,] sectionInformation)
     {
         var firstSection = AddFirstSection(sectionInformation);

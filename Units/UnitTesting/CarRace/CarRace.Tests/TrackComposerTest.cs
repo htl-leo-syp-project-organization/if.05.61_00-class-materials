@@ -13,11 +13,13 @@ public class TrackComposerTest
     public void ItShouldCreateASection_GivenOneSectionsLengthAndSpeedAsArray()
     {
         var composer = new TrackComposer();
-        int[,] sectionInformation = { { 300, 250 } };
-        composer.AddTracks(sectionInformation);
-        var section1 = composer.GetSection(0);
-        Assert.AreEqual(sectionInformation[0, 0], section1.Length);
-        Assert.AreEqual(sectionInformation[0, 1], section1.MaxSpeed);
+        var sectionInformation = new[] { (300, 250) };
+        
+        composer.ComposeFrom(sectionInformation);
+        var track = composer.Track;
+
+        Assert.AreEqual(sectionInformation[0].Item1, track.StartSection?.Length);
+        Assert.AreEqual(sectionInformation[0].Item2, track.StartSection?.MaxSpeed);
     }
     
     [TestMethod]
