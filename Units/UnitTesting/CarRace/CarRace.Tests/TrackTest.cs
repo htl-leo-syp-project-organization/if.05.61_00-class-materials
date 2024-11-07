@@ -1,4 +1,3 @@
-using CarRace;
 using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -58,12 +57,12 @@ public class TrackTest
         track.Close();
         
         var startSection = track.StartSection;
-        var secondSection = startSection.NextSection;
-        var thirdSection = secondSection.NextSection;
+        var secondSection = startSection?.NextSection;
+        var thirdSection = secondSection?.NextSection;
         
-        Assert.AreEqual(secondSection, startSection.NextSection);
-        Assert.AreEqual(thirdSection, secondSection.NextSection);
-        Assert.AreEqual(startSection, thirdSection.NextSection);
+        Assert.AreEqual(secondSection, startSection?.NextSection);
+        Assert.AreEqual(thirdSection, secondSection?.NextSection);
+        Assert.AreEqual(startSection, thirdSection?.NextSection);
     }
 
     [TestMethod]
