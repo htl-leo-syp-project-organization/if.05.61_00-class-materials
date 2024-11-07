@@ -55,42 +55,16 @@ public class TrackComposerTest
     }
     
     [TestMethod]
-    [Ignore]
-    public void ItShouldConnectTwoSectionsInACircle_GivenTwoSections()
+    public void ItShouldConnectFirstAndLastSection_GivenCloseIsRequired()
     {
         var composer = new TrackComposer();
-        int[,] sectionInformation = { { 300, 250 }, { 500, 300 } };
+        var sectionInformation = new[] { (300, 250), (500, 300) };
         
-        composer.AddTracks(sectionInformation);
-        var startSection = composer.GetSection(0);
-        var endSection = composer.GetSection(1);
+        composer.ComposeFrom(sectionInformation, true);
+        var startSection = composer.Track.StartSection;
+        var endSection = startSection?.NextSection;
         
-        Assert.AreEqual(startSection.NextSection, endSection);
-        Assert.AreEqual(startSection.PreviousSection, endSection);
-        Assert.AreEqual(endSection.NextSection, startSection);
-        Assert.AreEqual(endSection.PreviousSection, startSection);
-    }
-
-
-    [TestMethod]
-    [Ignore]
-    public void ItShouldCreateAllSectionsAndConnectThem_GivenMoreSection()
-    {
-        var composer = new TrackComposer();
-        int[,] sectionInformation = { { 300, 250 }, { 500, 300 }, {50, 40}, {70, 120} };
-        
-        composer.AddTracks(sectionInformation);
-        
-        Assert.AreEqual(composer.GetSection(0).NextSection, composer.GetSection(1));
-        Assert.AreEqual(composer.GetSection(0).PreviousSection, composer.GetSection(3));
-        
-        Assert.AreEqual(composer.GetSection(1).NextSection, composer.GetSection(2));
-        Assert.AreEqual(composer.GetSection(1).PreviousSection, composer.GetSection(0));
-        
-        Assert.AreEqual(composer.GetSection(2).NextSection, composer.GetSection(3));
-        Assert.AreEqual(composer.GetSection(2).PreviousSection, composer.GetSection(1));
-        
-        Assert.AreEqual(composer.GetSection(3).NextSection, composer.GetSection(0));
-        Assert.AreEqual(composer.GetSection(3).PreviousSection, composer.GetSection(2));
+        Assert.AreEqual(startSection?.PreviousSection, endSection);
+        Assert.AreEqual(endSection?.NextSection, startSection);
     }
 }

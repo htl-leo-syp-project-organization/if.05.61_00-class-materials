@@ -5,11 +5,16 @@ public class TrackComposer
     private readonly List<Section> _sections = new List<Section>();
     public Track Track { get; set; } = new Track();
 
-    public void ComposeFrom((int, int)[] sectionInformation)
+    public void ComposeFrom((int, int)[] sectionInformation, bool closedTrackIsRequired = false)
     {
         foreach (var section in sectionInformation)
         {
             this.Track.Add(new Section(section));
+        }
+
+        if (closedTrackIsRequired)
+        {
+            Track.Close();
         }
     }
     public void AddTracks(int[,] sectionInformation)
