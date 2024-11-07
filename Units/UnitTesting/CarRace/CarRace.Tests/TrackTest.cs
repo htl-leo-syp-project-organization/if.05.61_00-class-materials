@@ -65,4 +65,12 @@ public class TrackTest
         Assert.AreEqual(thirdSection, secondSection.NextSection);
         Assert.AreEqual(startSection, thirdSection.NextSection);
     }
+
+    [TestMethod]
+    public void ItShouldDoNothing_GivenCloseIsCalledOnAnEmptyTrack()
+    {
+        var track = new Track();
+        track.Close();
+        Assert.IsNull(track.StartSection);
+    }
 }
