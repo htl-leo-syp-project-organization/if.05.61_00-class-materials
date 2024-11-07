@@ -33,4 +33,9 @@ public class Track
         }
         _endSection = section;
     }
+
+    public void Close()
+    {
+        if (_startSection != null) _endSection?.ConnectMeBefore(_startSection);
+    }
 }

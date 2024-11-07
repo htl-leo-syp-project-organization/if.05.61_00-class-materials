@@ -43,4 +43,26 @@ public class TrackTest
         
         Assert.AreEqual(someSection1.Length + someSection2.Length, track.Length);
     }
+
+    [TestMethod]
+    public void ItShouldConnectFirstAndLastSection_GivenCloseIsCalled()
+    {
+        var track = new Track();
+        var someSection1 = new Section(100, 150);
+        var someSection2 = new Section(200, 200);
+        var someSection3 = new Section(300, 260);
+        track.Add(someSection1);
+        track.Add(someSection2);
+        track.Add(someSection3);
+
+        track.Close();
+        
+        var startSection = track.StartSection;
+        var secondSection = startSection.NextSection;
+        var thirdSection = secondSection.NextSection;
+        
+        Assert.AreEqual(secondSection, startSection.NextSection);
+        Assert.AreEqual(thirdSection, secondSection.NextSection);
+        Assert.AreEqual(startSection, thirdSection.NextSection);
+    }
 }
