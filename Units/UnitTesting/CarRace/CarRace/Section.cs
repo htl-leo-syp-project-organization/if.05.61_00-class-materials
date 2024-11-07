@@ -23,6 +23,11 @@ public class Section
         Length = lengthAndSpeed[0];
         MaxSpeed = lengthAndSpeed[1];
     }
+
+    public Section((int, int) sectionInformation)
+    :this(sectionInformation.Item1, sectionInformation.Item2)
+    {
+    }
     public Section(int length, int maxSpeed) { Length = length; MaxSpeed = maxSpeed; }
 
     public void ConnectMeAfter(Section previousSection)

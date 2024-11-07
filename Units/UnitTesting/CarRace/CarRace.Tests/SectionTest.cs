@@ -40,6 +40,17 @@ public class SectionTest
     }
 
     [TestMethod]
+    public void ItShouldHaveTheGivenLengthAndMaxSpeed_GivenConstructedWithATuple()
+    {
+        var lengthAndSpeed = (300, 220);
+        
+        var section = new Section(lengthAndSpeed);
+        
+        Assert.AreEqual(lengthAndSpeed.Item1, section.Length);
+        Assert.AreEqual(lengthAndSpeed.Item2, section.MaxSpeed);
+    }
+
+    [TestMethod]
     public void ItShouldKnowItsNextSection_GivenConnectedBeforeAnotherSection()
     {
         var section1 = new Section();
