@@ -18,12 +18,6 @@ public class Section
     {
         
     }
-    public Section(int[] lengthAndSpeed)
-    {
-        Length = lengthAndSpeed[0];
-        MaxSpeed = lengthAndSpeed[1];
-    }
-
     public Section((int, int) sectionInformation)
     :this(sectionInformation.Item1, sectionInformation.Item2)
     {

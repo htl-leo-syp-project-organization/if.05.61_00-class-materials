@@ -2,7 +2,7 @@ namespace CarRace;
 
 public class RaceController
 {
-    public Section raceTrackStart { get; set; }
+    public Track track { get; set; }
 
     public int AddCar(Car car)
     {
@@ -11,17 +11,17 @@ public class RaceController
 
     public struct Position
     {
-        public Position(Section section, int position)
+        public Position(LockedSection section, int position)
         {
             Section = section;
             PositionInSection = position;
         }
-        public Section Section { get; }
+        public LockedSection Section { get; }
         public int PositionInSection { get; }
     }
     
     public Position GetPosition(int carNumber)
     {
-        return new Position(raceTrackStart, 0);
+        return new Position(new LockedSection(new Section()), 0);
     }
 }
