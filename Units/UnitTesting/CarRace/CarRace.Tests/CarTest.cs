@@ -8,26 +8,35 @@ namespace CarRace.Tests;
 [TestSubject(typeof(Car))]
 public class CarTest
 {
-
+    [TestMethod]
+    public void ItShouldHaveTheNumberAssignedOnConstruction_GivenConstructed()
+    {
+        int someNumber = 15;
+        
+        var car = new Car(someNumber);
+        
+        Assert.AreEqual(15, car.Number);
+    }
     [TestMethod]
     public void ItShouldHaveNoSpeed_GivenConstructed()
     {
-        var car = new Car();
+        int someNumber = 8;
+        var car = new Car(someNumber);
         Assert.AreEqual(0, car.Speed);
     }
-
-
+    
     [TestMethod]
     public void ItShouldBeAtGear0_GivenConstructed()
     {
-        var car = new Car();
+        int someNumber = 1;
+        var car = new Car(someNumber);
         Assert.AreEqual(0, car.Gear);
     }
 
     [TestMethod]
     public void ItShouldThrowAnException_GivenSelectedGearIsNegative()
     {
-        var car = new Car();
+        var car = new Car(5);
         
         var exception = Assert.ThrowsException<ArgumentException>(() => car.Gear = -1);
         Assert.IsNotNull(exception);
@@ -37,7 +46,7 @@ public class CarTest
     [TestMethod]
     public void ItShouldThrowAnException_GivenSelectedGearIsGreaterThan6()
     {
-        var car = new Car();
+        var car = new Car(3);
         
         var exception = Assert.ThrowsException<ArgumentException>(() => car.Gear = 7);
         Assert.IsNotNull(exception);
@@ -47,7 +56,7 @@ public class CarTest
     {
         public FakeDice(int value) {_dots = value;}
 
-        private int _dots;
+        private readonly int _dots;
         public int Dots { get; private set; }
         
         public bool WasRolled { get; private set; } = false;
@@ -62,7 +71,7 @@ public class CarTest
     public void ItShouldHaveASpeedOf250_GivenGear5AndDice5()
     {
         var dice = new FakeDice(5);
-        var car = new Car(dice);
+        var car = new Car(3, dice);
         car.Gear = 5;
         car.Accelerate();
         
@@ -74,7 +83,7 @@ public class CarTest
     public void ItShouldRollTheDice_GivenAccelerateIsCalled()
     {
         var dice = new FakeDice(5);
-        var car = new Car(dice);
+        var car = new Car(25, dice);
         
         car.Accelerate();
 

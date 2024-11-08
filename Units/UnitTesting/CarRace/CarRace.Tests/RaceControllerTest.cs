@@ -26,7 +26,7 @@ public class RaceControllerTest
     {
         var track = _raceController.Track;
         
-        var carNumber = _raceController.AddCar(new Car());
+        var carNumber = _raceController.AddCar(new Car(10));
         var position = _raceController.GetPosition(carNumber);
         
         Assert.AreEqual(track.StartSection, position.Section);

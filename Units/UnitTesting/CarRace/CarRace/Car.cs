@@ -5,11 +5,12 @@ public class Car
     private readonly IDice _dice;
     private int _gear;
 
-    public Car() : this(new DefaultDice())
+    public Car(int number) : this(number, new DefaultDice())
     {
     }
-    public Car(IDice dice)
+    public Car(int number, IDice dice)
     {
+        Number = number;
         _dice = dice;
     }
     public int Speed { get; private set; }
@@ -24,6 +25,8 @@ public class Car
             _gear = value;
         }
     }
+
+    public int Number { get; private set; }
 
     public void Accelerate()
     {
