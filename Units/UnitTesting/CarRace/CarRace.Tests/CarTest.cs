@@ -98,4 +98,17 @@ public class CarTest
 
         Assert.IsTrue(dice.WasRolled);
     }
+
+    [TestMethod]
+    public void ItShouldProvideACarInfo_GivenCarInfoIsCalled()
+    {
+        var car = new Car(25);
+        var section = new Section(10, 10);
+        car.CurrentPosition = new Position(
+            section.Locked(), 
+            0);
+        var carInfo = car.CarInfo();
+        Assert.AreEqual(car.CurrentPosition.Section, section.Locked());
+        Assert.AreEqual(car.CurrentPosition.PositionInSection, 0);
+    }
 }

@@ -35,6 +35,11 @@ public class Car
         _dice.Roll();
         Speed = _dice.Dots * Gear * 10;
     }
+
+    public CarInfo CarInfo()
+    {
+        return new CarInfo(this);
+    }
 }
 
 internal class DefaultDice : IDice
@@ -57,4 +62,16 @@ public struct Position
     }
     public LockedSection Section { get; }
     public int PositionInSection { get; }
+}
+
+public readonly struct CarInfo
+{
+    private readonly Car _car;
+    public int Number { get => _car.Number; }
+    public Position Position => _car.CurrentPosition;
+
+    public CarInfo(Car car)
+    {
+        _car = car;
+    }
 }
