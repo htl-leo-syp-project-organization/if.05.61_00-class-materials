@@ -26,7 +26,7 @@ IDice <|-- DefaultDice
 class Car {
     Gear: Integer
     Speed: Integer
-    CurrentSection: Section
+    CurrentSection: LockedSection
     PositionInSection: Integer
     Status: enum {Ok, Broken}
 
@@ -44,7 +44,25 @@ note right of Car::MoveInSection
 endnote
 
 Car o-- IDice
-Car "1" o-- "1" Section
+Car "1" o-- "1" LockedSection
+
+class RaceCar {
+    CurrentSection: LockedSection
+}
+RaceCar "1" o-- "1" Car
+
+note right of RaceCar::CurrentSection
+    Same as Car but CurrentSection
+    is readonly
+endnote
+
+class RaceCarInfo {
+    CurrentSection: LockedSection
+    PositionInSection: Integer
+    Status: enum {Ok, Broken}
+
+}
+RaceCarInfo "1" o-- "1" RaceCar
 
 class Section {
     Length: Integer
@@ -63,13 +81,12 @@ class LockedSection {
     MaxSpeed: Integer
     NextSection: LockedSection
     PreviousSection: LockedSection
-
-    LockedSection(Section section)
 }
 
-class Track
-Track : StartSection: Section
-Track : Length: Integer
+class Track {
+    StartSection: LockedSection
+    Length: Integer
+}
 Track "1" o-- "*" Section
 
 class RaceController {
@@ -79,5 +96,13 @@ class RaceController {
 RaceController "1" o-- "*" Car
 RaceController "1" o-- "1" Track
 
+class RaceBuilder {
+    Track Track
+    RaceController RaceController
+
+    AddCar(number: Integer, color: Color)
+}
+RaceBuilder "1" o-- "1" RaceController
+RaceBuilder "1" o-- "1" Track
 @enduml
 ```
