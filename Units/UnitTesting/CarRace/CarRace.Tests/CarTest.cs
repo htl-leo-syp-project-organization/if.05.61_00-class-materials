@@ -24,6 +24,15 @@ public class CarTest
         var car = new Car(someNumber);
         Assert.AreEqual(0, car.Speed);
     }
+
+    [TestMethod]
+    public void ItShouldHaveAnInitialPosition_GivenConstructed()
+    {
+        var car = new Car(9);
+        
+        Assert.IsNull(car.CurrentPosition.Section);
+        Assert.AreEqual(0, car.CurrentPosition.PositionInSection);
+    }
     
     [TestMethod]
     public void ItShouldBeAtGear0_GivenConstructed()

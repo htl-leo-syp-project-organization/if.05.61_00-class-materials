@@ -27,7 +27,9 @@ public class Car
     }
 
     public int Number { get; private set; }
-
+    
+    public Position CurrentPosition { get;  set; }
+    
     public void Accelerate()
     {
         _dice.Roll();
@@ -44,4 +46,15 @@ internal class DefaultDice : IDice
     {
         Dots = _random.Next(6) + 1;
     }
+}
+
+public struct Position
+{
+    public Position(LockedSection section, int position)
+    {
+        Section = section;
+        PositionInSection = position;
+    }
+    public LockedSection Section { get; }
+    public int PositionInSection { get; }
 }
