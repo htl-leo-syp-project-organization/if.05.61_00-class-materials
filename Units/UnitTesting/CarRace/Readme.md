@@ -172,11 +172,11 @@ Track "1" o-- "*" LockedSection
 
 class RaceController {
     - CurrentCar: RaceCar
-    + RaceStatus: [RaceCarInfo]
 
     + RaceController(track: Track, cars, [RaceCar])
 
     + MoveCurrentCarWithGear(gear: Integer)
+    + RaceStatusSortedBy(sortOrder: RaceStatusSortOrder): [RaceCarInfo]
 }
 RaceController "1" o-- "*" RaceCar
 RaceController "1" o-- "1" Track
