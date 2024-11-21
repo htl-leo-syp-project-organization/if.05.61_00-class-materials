@@ -11,7 +11,7 @@ public class CarTest
     [TestMethod]
     public void ItShouldHaveTheNumberAssignedOnConstruction_GivenConstructed()
     {
-        int someNumber = 15;
+        const int someNumber = 15;
         
         var car = new Car(someNumber);
         
@@ -68,7 +68,7 @@ public class CarTest
         private readonly int _dots;
         public int Dots { get; private set; }
         
-        public bool WasRolled { get; private set; } = false;
+        public bool WasRolled { get; private set; }
         public void Roll()
         {
             WasRolled = true;
@@ -107,7 +107,6 @@ public class CarTest
         car.CurrentPosition = new Position(
             section.Locked(), 
             0);
-        var carInfo = car.CarInfo();
         Assert.AreEqual(car.CurrentPosition.Section, section.Locked());
         Assert.AreEqual(car.CurrentPosition.PositionInSection, 0);
     }

@@ -67,7 +67,7 @@ public struct Position
 public readonly struct CarInfo
 {
     private readonly Car _car;
-    public int Number { get => _car.Number; }
+    public int Number => _car.Number;
     public Position Position => _car.CurrentPosition;
 
     public CarInfo(Car car)
