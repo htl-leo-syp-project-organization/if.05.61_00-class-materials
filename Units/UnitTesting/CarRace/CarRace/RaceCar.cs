@@ -2,7 +2,7 @@ namespace CarRace;
 
 public class RaceCar
 {
-    private Car _car;
+    private readonly Car _car;
     public RaceCar(Car car)
     {
         _car = car;
@@ -15,10 +15,16 @@ public class RaceCar
     }
 
     public int Speed => _car.Speed;
-    public Position CurrentPosition { get => _car.CurrentPosition; }
+    public Position CurrentPosition => _car.CurrentPosition;
 
     public void Accelerate()
     {
         _car.Accelerate();
+    }
+
+    public void PlaceAtBeginningOf(Track track)
+    {
+        var startPosition = new Position(track.StartSection, 0);
+        _car.CurrentPosition = startPosition;
     }
 }

@@ -70,4 +70,17 @@ public class RaceCarTest
         Assert.AreEqual(section.Locked(), raceCarsPosition.Section);
         Assert.AreEqual(10, raceCarsPosition.PositionInSection);
     }
+
+    [TestMethod]
+    public void ItShouldHaveThePositionAtBeginOfTrack_GivenPlaceAtBeginOfIsCalled()
+    {
+        var track = new Track();
+        track.Add(new Section(100, 30));
+        var car = new Car(50);
+        var raceCar = new RaceCar(car);
+        
+        raceCar.PlaceAtBeginningOf(track);
+        
+        Assert.AreEqual(track.StartSection, car.CurrentPosition.Section);
+    }
 }
