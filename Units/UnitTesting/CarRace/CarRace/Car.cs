@@ -55,10 +55,10 @@ internal class DefaultDice : IDice
 
 public struct Position
 {
-    public Position(LockedSection section, int position)
+    public Position(LockedSection section, int positionInSection)
     {
         Section = section;
-        PositionInSection = position;
+        PositionInSection = positionInSection;
     }
     public LockedSection Section { get; }
     public int PositionInSection { get; }
