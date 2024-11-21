@@ -8,6 +8,7 @@ public class RaceCar
         _car = car;
     }
 
+    public int Number => _car.Number;
     public int Gear
     {
         get => _car.Gear;
@@ -15,7 +16,8 @@ public class RaceCar
     }
 
     public int Speed => _car.Speed;
-    public Position CurrentPosition => _car.CurrentPosition;
+    public Car.Position CurrentPosition => _car.CurrentPosition;
+    public RaceCarInfo RaceCarInfo => new RaceCarInfo(this);
 
     public void Accelerate()
     {
@@ -24,7 +26,19 @@ public class RaceCar
 
     public void PlaceAtBeginningOf(Track track)
     {
-        var startPosition = new Position(track.StartSection, 0);
+        var startPosition = new Car.Position(track.StartSection, 0);
         _car.CurrentPosition = startPosition;
     }
+}
+
+public readonly struct RaceCarInfo
+{
+    private readonly RaceCar _car;
+    public RaceCarInfo(RaceCar car)
+    {
+        _car = car;
+    }
+    
+    public int Number => _car.Number;
+    public Car.Position Position => _car.CurrentPosition;
 }

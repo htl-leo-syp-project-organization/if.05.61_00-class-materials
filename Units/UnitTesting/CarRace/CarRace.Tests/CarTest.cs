@@ -104,7 +104,7 @@ public class CarTest
     {
         var car = new Car(25);
         var section = new Section(10, 10);
-        car.CurrentPosition = new Position(
+        car.CurrentPosition = new Car.Position(
             section.Locked(), 
             0);
         Assert.AreEqual(car.CurrentPosition.Section, section.Locked());

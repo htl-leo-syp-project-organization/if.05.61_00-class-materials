@@ -4,8 +4,8 @@ public enum RaceStatusSortOrder {Number, Rank}
 
 public class RaceController
 {
-    private readonly Car[] _cars;
-    public RaceController(Track track, Car[] cars)
+    private readonly RaceCar[] _cars;
+    public RaceController(Track track, RaceCar[] cars)
     {
         _cars = cars;
         Track = track;
@@ -13,8 +13,8 @@ public class RaceController
     }
     public Track Track { get; }
 
-    public CarInfo[] RaceStatusSortedBy(RaceStatusSortOrder sortOrder)
+    public RaceCarInfo[] RaceStatusSortedBy(RaceStatusSortOrder sortOrder)
     {
-        return _cars.Select(car => car.CarInfo()).ToArray();
+        return _cars.Select(car => car.RaceCarInfo).ToArray();
     }
 }

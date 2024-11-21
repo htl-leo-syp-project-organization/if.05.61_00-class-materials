@@ -17,13 +17,14 @@ public class RaceControllerTest
         _raceController = new RaceController(track, cars);
     }
 
-    private static Car[] CreateRaceCars()
+    private static RaceCar[] CreateRaceCars()
     {
         const int numberOfCars = 10;
-        var cars = new Car[numberOfCars];
+        var cars = new RaceCar[numberOfCars];
         for (var i = 0; i < 10; i++)
         {
-            cars[i] = new Car(i + 1);
+            var newCar = new Car(i + 1);
+            cars[i] = new RaceCar(newCar);
         }
 
         return cars;

@@ -62,7 +62,7 @@ public class RaceCarTest
     {
         var car = new Car(50);
         var section = new Section(100, 30);
-        car.CurrentPosition = new Position(section.Locked(), 10);
+        car.CurrentPosition = new Car.Position(section.Locked(), 10);
         var raceCar = new RaceCar(car);
         
         var raceCarsPosition = raceCar.CurrentPosition;
@@ -82,5 +82,19 @@ public class RaceCarTest
         raceCar.PlaceAtBeginningOf(track);
         
         Assert.AreEqual(track.StartSection, car.CurrentPosition.Section);
+    }
+
+    [TestMethod]
+    public void ItShouldProvideARaceCarInfo()
+    {
+        var track = new Track();
+        track.Add(new Section(100, 30));
+        var car = new Car(50);
+        var raceCar = new RaceCar(car);
+        raceCar.PlaceAtBeginningOf(track);
+
+        var raceCarInfo = raceCar.RaceCarInfo;
+
+        Assert.AreEqual(50, raceCarInfo.Number);
     }
 }

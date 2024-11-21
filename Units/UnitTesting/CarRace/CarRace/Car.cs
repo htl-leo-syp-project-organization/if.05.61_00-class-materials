@@ -8,11 +8,13 @@ public class Car
     public Car(int number) : this(number, new DefaultDice())
     {
     }
+
     public Car(int number, IDice dice)
     {
         Number = number;
         _dice = dice;
     }
+
     public int Speed { get; private set; }
 
     public int Gear
@@ -27,51 +29,35 @@ public class Car
     }
 
     public int Number { get; private set; }
-    
-    public Position CurrentPosition { get;  set; }
-    
+
+    public Position CurrentPosition { get; set; }
+
     public void Accelerate()
     {
         _dice.Roll();
         Speed = _dice.Dots * Gear * 10;
     }
 
-    public CarInfo CarInfo()
+    internal class DefaultDice : IDice
     {
-        return new CarInfo(this);
+        readonly Random _random = new Random();
+        public int Dots { get; private set; }
+
+        public void Roll()
+        {
+            Dots = _random.Next(6) + 1;
+        }
     }
-}
 
-internal class DefaultDice : IDice
-{
-    readonly Random _random = new Random();
-    public int Dots { get; private set; }
-    
-    public void Roll()
+    public struct Position
     {
-        Dots = _random.Next(6) + 1;
-    }
-}
+        public Position(LockedSection section, int positionInSection)
+        {
+            Section = section;
+            PositionInSection = positionInSection;
+        }
 
-public struct Position
-{
-    public Position(LockedSection section, int positionInSection)
-    {
-        Section = section;
-        PositionInSection = positionInSection;
-    }
-    public LockedSection Section { get; }
-    public int PositionInSection { get; }
-}
-
-public readonly struct CarInfo
-{
-    private readonly Car _car;
-    public int Number => _car.Number;
-    public Position Position => _car.CurrentPosition;
-
-    public CarInfo(Car car)
-    {
-        _car = car;
+        public LockedSection Section { get; }
+        public int PositionInSection { get; }
     }
 }
