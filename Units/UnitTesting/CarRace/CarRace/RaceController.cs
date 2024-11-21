@@ -1,27 +1,20 @@
 namespace CarRace;
 
+public enum RaceStatusSortOrder {Number, Rank}
+
 public class RaceController
 {
-    public Track Track { get; set; }
-
-    public int AddCar(Car car)
+    private readonly Car[] _cars;
+    public RaceController(Track track, Car[] cars)
     {
-        return 0;
+        _cars = cars;
+        Track = track;
+//        _cars.Select(car => car.CurrentPosition.Section = Track.StartSection);
     }
+    public Track Track { get; }
 
-    public struct Position
+    public CarInfo[] RaceStatusSortedBy(RaceStatusSortOrder sortOrder)
     {
-        public Position(LockedSection section, int position)
-        {
-            Section = section;
-            PositionInSection = position;
-        }
-        public LockedSection Section { get; }
-        public int PositionInSection { get; }
-    }
-    
-    public Position GetPosition(int carNumber)
-    {
-        return new Position(Track.StartSection!, 0);
+        return _cars.Select(car => car.CarInfo()).ToArray();
     }
 }
