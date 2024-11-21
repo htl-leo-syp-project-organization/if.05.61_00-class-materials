@@ -46,22 +46,4 @@ public class RaceBuilderTest
         
         Assert.IsNull(raceBuilder.RaceController);
     }
-    
-    [TestMethod]
-    [Ignore]
-    public void ItShouldAddACarToTheTrack_GivenATrackIsDefined()
-    {
-        var trackComposer = new TrackComposer();
-        trackComposer.ComposeFrom(new[] {(50, 100), (800, 300)});
-        
-        var raceBuilder = new RaceBuilder
-        {
-            Track = trackComposer.Track
-        };
-        raceBuilder.AddCar(5, "Red");
-        var raceController = raceBuilder.RaceController;
-        var raceStatus = raceController?.RaceStatusSortedBy(RaceStatusSortOrder.Rank);
-        
-        //Assert.AreEqual(raceStatus?[0].CurrentPosition.Section, raceController?.Track.StartSection);
-    }
 }
