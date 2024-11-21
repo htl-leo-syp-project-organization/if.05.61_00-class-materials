@@ -26,7 +26,10 @@ public class RaceCar
 
     public void PlaceAtBeginningOf(Track track)
     {
-        var startPosition = new Car.Position(track.StartSection, 0);
+        var startPosition = new Car.Position(
+            track.StartSection ?? 
+            throw new ArgumentException("Track has no sections"), 
+            0);
         _car.CurrentPosition = startPosition;
     }
 }

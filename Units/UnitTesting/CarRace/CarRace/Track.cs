@@ -29,8 +29,9 @@ public class Track
         }
         else
         {
-            section.ConnectMeAfter(_endSection);
+            section.ConnectMeAfter(_endSection!);
         }
+
         _endSection = section;
     }
 

@@ -38,7 +38,7 @@ public class Car
         Speed = _dice.Dots * Gear * 10;
     }
 
-    internal class DefaultDice : IDice
+    private class DefaultDice : IDice
     {
         readonly Random _random = new Random();
         public int Dots { get; private set; }
