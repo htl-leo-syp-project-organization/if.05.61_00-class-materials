@@ -9,7 +9,6 @@ namespace CarRace.Tests;
 public class RaceBuilderTest
 {
     [TestMethod]
-    [Ignore]
     public void ItShouldProvideARaceController_GivenATrackAndAtLeastOneCarIsAdded()
     {
         var trackComposer = new TrackComposer();
