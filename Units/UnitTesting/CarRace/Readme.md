@@ -90,42 +90,36 @@ class DefaultDice {
 IDice <|-- FakeDice
 IDice <|-- DefaultDice
 
+struct Position {
+    + Section: LockedSection
+    + PositionInSection: Integer
+}
+
 class Car {
     + Gear: Integer
     + <<get>> Speed: Integer
-    + CurrentSection: LockedSection
-    + PositionInSection: Integer
+    + CurrentPosition: Position
     + Status: enum Status
 
     + Car()
     + Car(dice: IDice)
     + Accelerate()
 }
+Car *-- Status
+Car *-- Position
+Car o-- IDice
+Car "1" o-- "1" LockedSection
 
 enum Status {
     Ok
     Broken
 }
 
-class Section {
-    Length: Integer
-    MaxSpeed: Integer
-    NextSection: Section
-    PreviousSection: Section
-    ConnectMeAfter(section: Section)
-    ConnectMeBefore(section: Section)
-    Locked(): LockedSection
-}
-
-Car o-- IDice
-Car "1" o-- "1" LockedSection
-
 class RaceCar {
     + Gear: Integer
     + <<get>> Speed: Integer
-    + <<get>> CurrentSection: LockedSection
-    + <<get>> PositionInSection: Integer
-    + <<get>> Status: enum {Ok, Broken}
+    + <<get>> CurrentPosition: Position
+    + <<get>> Status: enum Status
 
     + Accelerate()
     + IsTooFast()
@@ -143,9 +137,8 @@ endnote
 RaceCar "1" o-- "1" Car
 
 class RaceCarInfo {
-    + <<get>> CurrentSection: LockedSection
-    + <<get>> PositionInSection: Integer
-    + <<get>> Status: enum {Ok, Broken}
+    + <<get>> CurrentPosition: Position
+    + <<get>> Status: enum Status
 }
 RaceCarInfo "1" o-- "1" Car
 
