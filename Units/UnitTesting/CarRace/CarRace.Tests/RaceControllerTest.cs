@@ -17,6 +17,14 @@ public class RaceControllerTest
         _raceController = new RaceController(track, cars);
     }
 
+    private static Track ComposeTrack()
+    {
+        var trackComposer = new TrackComposer();
+        var sectionInformation = new[]{ (300, 250), (500, 300), (50, 40), (70, 120), (100, 300), (30, 100), (100, 300), (40, 150), (700, 200), (120, 150) };
+        trackComposer.ComposeFrom(sectionInformation);
+        return trackComposer.Track;
+    }
+
     private static RaceCar[] CreateRaceCars()
     {
         const int numberOfCars = 10;
@@ -29,24 +37,15 @@ public class RaceControllerTest
 
         return cars;
     }
-
-    private static Track ComposeTrack()
-    {
-        var trackComposer = new TrackComposer();
-        var sectionInformation = new[]{ (300, 250), (500, 300), (50, 40), (70, 120), (100, 300), (30, 100), (100, 300), (40, 150), (700, 200), (120, 150) };
-        trackComposer.ComposeFrom(sectionInformation);
-        return trackComposer.Track;
-    }
-
+    
     [TestMethod]
-    [Ignore]
     public void ItShouldPlaceCarsAtRaceTrackStart_GivenConstructed()
     {
         var raceStatus = _raceController.RaceStatusSortedBy(RaceStatusSortOrder.Rank);
         var trackStartSection = _raceController.Track.StartSection;
-        var firstCarSection = raceStatus[0].Position.Section;
-        Assert.AreEqual(trackStartSection, firstCarSection);
-        // Assert.AreEqual(0, position.PositionInSection);
+        var firstCarPosition = raceStatus[0].Position;
+        Assert.AreEqual(trackStartSection, firstCarPosition.Section);
+        Assert.AreEqual(0, firstCarPosition.PositionInSection);
     }
 
 

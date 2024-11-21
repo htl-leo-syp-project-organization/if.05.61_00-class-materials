@@ -9,7 +9,10 @@ public class RaceController
     {
         _cars = cars;
         Track = track;
-//        _cars.Select(car => car.CurrentPosition.Section = Track.StartSection);
+        foreach (var car in _cars)
+        {
+            car.PlaceAtBeginningOf(Track);
+        }
     }
     public Track Track { get; }
 
