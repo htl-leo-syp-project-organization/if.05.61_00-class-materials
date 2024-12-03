@@ -42,7 +42,6 @@ class Section {
     PreviousSection: Section
     ConnectMeAfter(section: Section)
     ConnectMeBefore(section: Section)
-    Locked(): LockedSection
 }
 
 class Track {
