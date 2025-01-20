@@ -1,0 +1,40 @@
+### get all posts
+GET http://localhost:3000/posts
+
+### get a specific post
+GET http://localhost:3000/posts/2
+
+### add a post
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "title": "Post # 10",
+    "views": 0
+}
+
+### delete a post
+DELETE http://localhost:3000/posts/e2ad
+
+### put a post
+PUT http://localhost:3000/posts/c855
+Content-Type: application/json
+
+{
+    "title": "Post # 8",
+    "views": 0
+}
+
+### patch a post
+PATCH http://localhost:3000/posts/2
+Content-Type: application/json
+
+{
+    "title": "Post # 2"
+}
+
+### get all comments
+GET http://localhost:3000/comments
+
+### embed comments in a post
+GET http://localhost:3000/posts?_embed=comments
