@@ -1,5 +1,3 @@
-"use strict"
-
 document.body.onload = function() {
     loadDataFromServer()
 }
