@@ -13,3 +13,5 @@ Since material of this course is held in three different study programs the diff
 - [UML State Diagrams](Units/UMLStateDiagrams.md)
 - [PlantUML](Units/PlantUML.md)
 - [Effort Estimation](Units/EffortEstimation.md)
+- [Creativity Techniques](Units/CreativityTechniques/Presentation.pdf)
+- [REST](Units/REST.md)
