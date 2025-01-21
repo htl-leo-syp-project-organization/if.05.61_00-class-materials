@@ -6,14 +6,16 @@ document.body.onload = function() {
 
 async function loadDataFromServer() {
     const blogEntries = await getData("http://localhost:3000/posts")
-    renderOneGridLine(blogEntries.slice(0, 3))
+    renderOneGridLine(blogEntries.slice(0, 4))
     console.log(blogEntries)
 }
 
 function renderOneGridLine(blogEntries) {
   const grid = document.querySelector('#food')
-  const oneGridEntry = renderOneGrid(blogEntries[0])
-  grid.appendChild(oneGridEntry)
+  blogEntries.forEach(blogEntry => {
+    const oneGridEntry = renderOneGrid(blogEntry)
+    grid.appendChild(oneGridEntry)
+  })
 }
 
 function renderOneGrid(blogEntry) {
