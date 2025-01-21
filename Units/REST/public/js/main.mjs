@@ -2,8 +2,11 @@ import { getData } from './rest.mjs'
 import { renderOneGridLine } from './html-renderer.mjs'
 
 document.body.onload = function() {
-  // const sideBar = document.querySelector('#mySidebar')
-  // sideBar.addEventListener('click', hideSidebar)
+    const burgerMenuButton = document.querySelector('#burger-menu-button')
+    burgerMenuButton.addEventListener('click', showSidebar)
+
+    const closeSidebarItems = document.querySelectorAll('.sidebar-item')
+    closeSidebarItems.forEach(item => item.addEventListener('click', hideSidebar))
     loadDataFromServer()
 }
 
@@ -16,4 +19,13 @@ async function loadDataFromServer() {
     }
     // renderOneGridLine(blogEntries.slice(0, 4))
     console.log(blogEntries)
+}
+
+    // Script to open and close sidebar
+export function showSidebar() {
+        document.getElementById("my-sidebar").style.display = "block"
+}
+    
+export function hideSidebar() {
+    document.getElementById("my-sidebar").style.display = "none"
 }
