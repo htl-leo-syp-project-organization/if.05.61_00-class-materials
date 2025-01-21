@@ -5,7 +5,7 @@ document.body.onload = function() {
     const burgerMenuButton = document.querySelector('#burger-menu-button')
     burgerMenuButton.addEventListener('click', showSidebar)
 
-    const closeSidebarItems = document.querySelectorAll('.sidebar-item')
+    const closeSidebarItems = document.querySelector('#my-sidebar').childNodes
     closeSidebarItems.forEach(item => item.addEventListener('click', hideSidebar))
     loadDataFromServer()
 }
