@@ -22,10 +22,10 @@ async function loadDataFromServer() {
 }
 
     // Script to open and close sidebar
-export function showSidebar() {
-        document.getElementById("my-sidebar").style.display = "block"
+function showSidebar() {
+        document.querySelector("#my-sidebar").style.display = "block"
 }
     
-export function hideSidebar() {
-    document.getElementById("my-sidebar").style.display = "none"
+function hideSidebar() {
+    document.querySelector("#my-sidebar").style.display = "none"
 }
