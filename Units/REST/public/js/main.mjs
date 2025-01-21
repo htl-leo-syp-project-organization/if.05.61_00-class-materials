@@ -1,5 +1,5 @@
 import { getData } from './rest.mjs'
-import { renderOneGridLine } from './htmlRenderer.mjs'
+import { renderOneGridLine } from './html-renderer.mjs'
 
 document.body.onload = function() {
   // const sideBar = document.querySelector('#mySidebar')
