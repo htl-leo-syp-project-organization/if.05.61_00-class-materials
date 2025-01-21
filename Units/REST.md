@@ -8,3 +8,5 @@
 ## Experiment with the json-server
 Follow the instructions and suggestions on the [Github page of json-server](https://github.com/typicode/json-server)
 
+## JavaScript Fetch API
+[Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)

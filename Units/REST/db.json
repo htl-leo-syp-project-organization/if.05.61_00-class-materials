@@ -2,7 +2,9 @@
   "posts": [
     {
       "id": "1",
-      "title": "a title",
+      "title": "The Perfect Sandwich, A Real NYC Classic",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/sandwich.jpg",
       "views": 100
     },
     {
