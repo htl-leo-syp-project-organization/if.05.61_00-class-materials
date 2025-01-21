@@ -1,5 +1,12 @@
+"use strict"
+
 document.body.onload = function() {
-    getData("http://localhost:3000/posts");
+    loadDataFromServer()
+}
+
+async function loadDataFromServer() {
+    const blogEntries = await getData("http://localhost:3000/posts");
+    console.log(blogEntries);
 }
 
 // Script to open and close sidebar
@@ -19,7 +26,7 @@ function showSidebar() {
       }
   
       const json = await response.json();
-      console.log(json);
+      return json
     } catch (error) {
       console.error(error.message);
     }

@@ -10,46 +10,64 @@
     {
       "id": "2",
       "title": "Post # 2",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 200
     },
     {
       "id": "9d75",
       "title": "Try another one",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     },
     {
       "id": "bc7d",
       "title": "Post # 4",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     },
     {
       "id": "62ef",
       "title": "Post # 5",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     },
     {
       "id": "0a9f",
       "title": "Post # 6",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     },
     {
       "id": "ab6f",
       "title": "Post # 7",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     },
     {
       "title": "Post # 8",
       "views": 0,
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "id": "c855"
     },
     {
       "id": "f332",
       "title": "Post # 9",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     },
     {
       "id": "406d",
       "title": "Post # 10",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
       "views": 0
     }
   ],
