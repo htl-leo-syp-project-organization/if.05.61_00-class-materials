@@ -26,6 +26,45 @@ For more follow the instructions and suggestions on the [Github page of json-ser
 ### Prepare your frontend
 - Download the source of the Food Blog Template from [w3schools](https://www.w3schools.com/w3css/w3css_templates.asp).
 - Create a folder named `public` in your directory and store `index.html` there.
-- Download the images from [here](REST/public/images)
-### JavaScript Fetch API
+- Download the images from [here](REST/public/images) and add them to the image directory. Figure out in the source code how to name the directory or rename the path in the source code to name the directory as you want.
+- Test whether you can see a working template in your browser
+
+### Some Very Basic Cleanup
+1. Set a proper title
+2. Rename the image folder to a proper name if not already done
+3. Rename the event triggers properly
+4. Put a nice photo from you as `chef.jpg`
+5. ...
+
+### A Bit Advanced Cleanup
+Since we plan to add more JavaScript to our little project we want to get rid off the JS code in our index.html. Since we are doing professional JS we use modules.
+
+1. Create a directory `js` in your directory
+2. Create a file `main.mjs` there
+3. Remove the inline event triggers
+4. Move the functions to show and hide the side bar into the module and name it properly
+5. Add an `window.body.onload` trigger to the module where you add the `onclick` event listeners to the burger menu button and the side bar items.
+6. Add a script tag `<script type="module" src="/js/main.mjs"></script>` at the end of the body.
+
+### JavaScript Fetch API to Get Data from Server
+Now we are ready to fetch data from our json-server.
+
+1. Create a module `rest.mjs`
+2. Export an async function `getData(fromUrl)`
+   
+```JavaScript
+export async function getData(fromUrl) {
+    try {
+      const response = await fetch(fromUrl);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const json = await response.json();
+      return json
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+```
 [Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
