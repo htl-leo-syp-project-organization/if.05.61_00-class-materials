@@ -12,13 +12,13 @@ function renderOneGridLine(blogEntries) {
   gridLine.classList.add('w3-padding-16')
   gridLine.classList.add('w3-center')
   blogEntries.forEach(blogEntry => {
-    const oneGridEntry = renderOneGrid(blogEntry)
+    const oneGridEntry = renderOneGridCell(blogEntry)
     gridLine.appendChild(oneGridEntry)
   })
   return gridLine
 }
   
-function renderOneGrid(blogEntry) {
+function renderOneGridCell(blogEntry) {
   const newDiv = document.createElement('div')
   newDiv.classList.add('w3-quarter')
 

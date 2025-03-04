@@ -160,6 +160,13 @@ export async function getData(fromUrl) {
     }
   }
 ```
+There is not too much magic happening here. Lets check the details:
+
+1. All code is surrounded by a `try`-`catch` block to catch possible errors like malformed headers, cors problems, etc. If such an error occurs we log it into the console. A pretty fair first approach since most of these errors are developer errors and should not occur when the website finally is in production.
+2. The standard `fetch` method (defined in the web standard) is called. Note that `fetch` is async (no big surprise since we get something from an external source) and we have to `await` the response.
+3. The response contains all necessary data, meta (diagnostic) data as well as the actual payload (the data we eventually want to display in our website). We check the response whether its ok or not. If not ok we throw an error.
+4. At the end we get our actual payload in form of an array of JavaScript objects and return this to our caller.
+
 Now we can call this function in the `onload` trigger and check whether data is properly loaded.
 ```JavaScript
 import { getData } from "./rest.mjs"
@@ -168,4 +175,61 @@ const entries = await getData('http://localhost:3000/posts')
 console.log(entries)
 ```
 
+Finally we want to render the loaded data into our website. We start by analyzing the structure of the blog display part in `index.html`. We see that all blog entries are placed in a `div` container (the one after the comment line `<!-- !PAGE CONTENT! -->`).
+
+The two rows are again represented by a `div` which itself contains four cells (one for every blog entry) again represented by a `div`.
+
+The top container is a good anchor to place our blog entries dynamically with JavaScript. In order to be able to address it we give it an id, say `food-grid`. All other stuff inside this container will be generated dynamically, therefore we can remove it. Do not deleted it entirely in a first step since we need the structure to reconstruct everything now via JavaScript.
+
+Now lets prepare the rendering functionality. For this we add a new file called `html-renderer.mjs` to our project. This module exports a function `renderBlogEntries` accepting the previously loaded blog entries from our REST server. It queries the `div`-container and then takes slices of 4 to render one grid line (function `renderOneGridLine`).
+
+The function `renderOneGridLine` accepts a parameter `blogEntries` (having a slice of 4 entries). It constructs the proper `div`-structure (as previously seen in the html file), renders one grid cell (function `renderOneGridCell`) and appends it to the before created `div`.
+
+Finally, `renderOneGridCell` accepts a parameter holding one blog entry, creates the proper html structure for one grid cell and puts the whole grid cell together.
+
+We do not explain to many details here since we want to concentrate on the REST part of the project. The rendering code finally looks like as follows.
+
+```JavaScript
+export function renderBlogEntries(blogEntries) {
+  const grid = document.querySelector('#food-grid')
+  for (let i = 0; i < blogEntries.length; i+=4) {
+      const oneGridLine = renderOneGridLine(blogEntries.slice(i, i+4))
+      grid.appendChild(oneGridLine)
+  }
+}
+
+function renderOneGridLine(blogEntries) {
+  const gridLine = document.createElement('div')
+  gridLine.classList.add('w3-row-padding')
+  gridLine.classList.add('w3-padding-16')
+  gridLine.classList.add('w3-center')
+  blogEntries.forEach(blogEntry => {
+    const oneGridEntry = renderOneGridCell(blogEntry)
+    gridLine.appendChild(oneGridEntry)
+  })
+  return gridLine
+}
+  
+function renderOneGridCell(blogEntry) {
+  const newDiv = document.createElement('div')
+  newDiv.classList.add('w3-quarter')
+
+  const newImg = document.createElement('img')
+  newImg.src = blogEntry.imagePath
+  newImg.alt = 'food image'
+  newImg.style.width = '100%'
+
+  const newH3 = document.createElement('h3')
+  newH3.textContent = blogEntry.title
+
+  const newP = document.createElement('p')
+  newP.textContent = blogEntry.text
+
+  newDiv.appendChild(newImg)
+  newDiv.appendChild(newH3)
+  newDiv.appendChild(newP)
+
+  return newDiv
+}
+```
 [Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
