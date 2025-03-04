@@ -1,5 +1,5 @@
 import { getData } from './rest.mjs'
-import { renderOneGridLine } from './html-renderer.mjs'
+import { renderBlogEntries } from './html-renderer.mjs'
 
 document.body.onload = async function() {
     const burgerMenuButton = document.querySelector('#burger-menu-button')
@@ -16,15 +16,7 @@ async function loadDataFromServer() {
     return blogEntries
 }
 
-function renderBlogEntries(blogEntries) {
-    const grid = document.querySelector('#food-grid')
-    for (let i = 0; i < blogEntries.length; i+=4) {
-        const oneGridLine = renderOneGridLine(blogEntries.slice(i, i+4))
-        grid.appendChild(oneGridLine)
-    }
-}
-
-    // Script to open and close sidebar
+// Script to open and close sidebar
 function showSidebar() {
         document.querySelector("#my-sidebar").style.display = "block"
 }
