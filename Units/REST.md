@@ -47,6 +47,99 @@ Since we plan to add more JavaScript to our little project we want to get rid of
 6. Add a script tag `<script type="module" src="/js/main.mjs"></script>` at the end of the body.
 
 ### JavaScript Fetch API to Get Data from Server
+We begin this part by fixing our playground db we used at the very beginning of this lesson. So lets replace the content of the file `db.json` by some nice food data we need for our project here.
+
+```json
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "The Perfect Sandwich, A Real NYC Classic",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/sandwich.jpg",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "Cherries, interrupted",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
+      "views": 200
+    },
+    {
+      "id": "9d75",
+      "title": "Le French",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/croissant.jpg",
+      "views": 0
+    },
+    {
+      "id": "bc7d",
+      "title": "All I Need Is a Popsicle",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/popsicle.jpg",
+      "views": 0
+    },
+    {
+      "id": "62ef",
+      "title": "Salmon For Your Skin",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/salmon.jpg",
+      "views": 0
+    },
+    {
+      "id": "0a9f",
+      "title": "Let Me Tell You About This Steak",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/steak.jpg",
+      "views": 0
+    },
+    {
+      "id": "ab6f",
+      "title": "Once Again, Robust Wine and Vegetable Pasta",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/wine.jpg",
+      "views": 0
+    },
+    {
+      "title": "Post # 8",
+      "views": 0,
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
+      "id": "c855"
+    },
+    {
+      "id": "f332",
+      "title": "Post # 9",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
+      "views": 0
+    },
+    {
+      "id": "406d",
+      "title": "Post # 10",
+      "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+      "imagePath": "images/cherries.jpg",
+      "views": 0
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
+```
 Now we are ready to fetch data from our json-server.
 
 1. Create a module `rest.mjs`
