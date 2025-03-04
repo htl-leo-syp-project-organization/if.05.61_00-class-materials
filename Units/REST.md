@@ -160,4 +160,12 @@ export async function getData(fromUrl) {
     }
   }
 ```
+Now we can call this function in the `onload` trigger and check whether data is properly loaded.
+```JavaScript
+import { getData } from "./rest.mjs"
+...
+const entries = await getData('http://localhost:3000/posts')
+console.log(entries)
+```
+
 [Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
