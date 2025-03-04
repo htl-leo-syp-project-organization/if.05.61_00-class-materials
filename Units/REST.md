@@ -26,7 +26,7 @@ For more follow the instructions and suggestions on the [Github page of json-ser
 ### Prepare your frontend
 - Download the source of the Food Blog Template from [w3schools](https://www.w3schools.com/w3css/w3css_templates.asp).
 - Create a folder named `public` in your directory and store `index.html` there.
-- Download the images from [here](REST/public/images) and add them to the image directory. Figure out in the source code how to name the directory or rename the path in the source code to name the directory as you want.
+- Download the images from [the repo](REST/public/images.zip) and add them to the image directory. Figure out in the source code how to name the directory or rename the path in the source code to name the directory as you want.
 - Test whether you can see a working template in your browser
 
 ### Some Very Basic Cleanup
