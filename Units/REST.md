@@ -37,13 +37,13 @@ For more follow the instructions and suggestions on the [Github page of json-ser
 5. ...
 
 ### A Bit Advanced Cleanup
-Since we plan to add more JavaScript to our little project we want to get rid off the JS code in our index.html. Since we are doing professional JS we use modules.
+Since we plan to add more JavaScript to our little project we want to get rid off the JS code in our index.html. Of course we are doing professional JS we use modules.
 
 1. Create a directory `js` in your directory
 2. Create a file `main.mjs` there
 3. Remove the inline event triggers
 4. Move the functions to show and hide the side bar into the module and name it properly
-5. Add an `window.body.onload` trigger to the module where you add the `onclick` event listeners to the burger menu button and the side bar items.
+5. Add a `document.body.onload` trigger to the module where you add the `onclick` event listeners to the burger menu button and the side bar items.
 6. Add a script tag `<script type="module" src="/js/main.mjs"></script>` at the end of the body.
 
 ### JavaScript Fetch API to Get Data from Server
