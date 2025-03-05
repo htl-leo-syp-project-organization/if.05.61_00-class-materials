@@ -27,6 +27,20 @@ function renderOneGridCell(blogEntry) {
   newImg.alt = 'food image'
   newImg.style.width = '100%'
 
+  const likeSymbol = document.createElement('img')
+  likeSymbol.src = 'images/heart-empty.png'
+  likeSymbol.alt = 'like symbol'
+  likeSymbol.style.width = '20px'
+  likeSymbol.style.height = '20px'
+  likeSymbol.style.position = 'relative'
+  likeSymbol.style.left = '40%'
+  likeSymbol.style.top = '0px'
+  likeSymbol.style.zIndex = '1'
+  likeSymbol.style.cursor = 'pointer'
+  likeSymbol.addEventListener('click', () => {
+    likeSymbol.src = 'images/heart-red.png'
+  })
+
   const newH3 = document.createElement('h3')
   newH3.textContent = blogEntry.title
 
@@ -34,6 +48,7 @@ function renderOneGridCell(blogEntry) {
   newP.textContent = blogEntry.text
 
   newDiv.appendChild(newImg)
+  newDiv.appendChild(likeSymbol)
   newDiv.appendChild(newH3)
   newDiv.appendChild(newP)
 
