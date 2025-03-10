@@ -12,21 +12,24 @@
       "title": "Cherries, interrupted",
       "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
       "imagePath": "images/cherries.jpg",
-      "views": 200
+      "views": 200,
+      "likes": 1
     },
     {
       "id": "9d75",
       "title": "Le French",
       "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
       "imagePath": "images/croissant.jpg",
-      "views": 0
+      "views": 0,
+      "likes": 0
     },
     {
       "id": "bc7d",
       "title": "All I Need Is a Popsicle",
       "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
       "imagePath": "images/popsicle.jpg",
-      "views": 0
+      "views": 0,
+      "likes": 3
     },
     {
       "id": "62ef",
@@ -68,7 +71,8 @@
       "title": "Post # 10",
       "text": "Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
       "imagePath": "images/cherries.jpg",
-      "views": 0
+      "views": 0,
+      "likes": 3
     }
   ],
   "comments": [

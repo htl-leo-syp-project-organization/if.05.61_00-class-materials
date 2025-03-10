@@ -1,3 +1,5 @@
+import { getDataFrom, patchDataFor } from './rest.mjs' // dependency to rest.mjs; bad bad bad; don't try this at home
+
 export function renderBlogEntries(blogEntries) {
   const grid = document.querySelector('#food-grid')
   for (let i = 0; i < blogEntries.length; i+=4) {
@@ -21,7 +23,7 @@ function renderOneGridLine(blogEntries) {
 function renderOneGridCell(blogEntry) {
   const newDiv=createContainerDiv(blogEntry.id)
   const newImg=createBlogImage(blogEntry)
-  const likeSymbol=createLikeSymbol()
+  const likeSymbol=createLikeSymbol(blogEntry)
   const newH3=createBlogTitle(blogEntry)
   const newP=createBlogText(blogEntry)
   putGridCellTogether(newDiv, newImg, likeSymbol, newH3, newP)
@@ -43,9 +45,13 @@ function createBlogImage(blogEntry) {
   return newImg
 }
 
-function createLikeSymbol() {
+function createLikeSymbol(blogEntry) {
   const likeSymbol=document.createElement('img')
-  likeSymbol.src='images/heart-empty.png'
+  if (blogEntry.likes > 0) {
+    likeSymbol.src='images/heart-red.png'
+  } else {
+    likeSymbol.src='images/heart-empty.png'
+  }
   likeSymbol.alt='like symbol'
   likeSymbol.style.width='20px'
   likeSymbol.style.height='20px'
@@ -55,9 +61,31 @@ function createLikeSymbol() {
   likeSymbol.style.zIndex='1'
   likeSymbol.style.cursor='pointer'
   likeSymbol.addEventListener('click', () => {
-    likeSymbol.src='images/heart-red.png'
+    const patchObject = {
+      id: likeSymbol.parentElement.id,
+      likes: blogEntry.likes
+    }
+    if (blogEntry.likes > 0) {
+      likeSymbol.src='images/heart-empty.png'
+      blogEntry.likes = 0
+      patchObject.likes = 0
+    } else {
+      likeSymbol.src='images/heart-red.png'
+      blogEntry.likes = 1
+      patchObject.likes = 1
+    }
+    patchPostFor(likeSymbol.parentElement.id, patchObject)
   })
   return likeSymbol
+}
+
+function getPostFrom(id) {
+  const post = getDataFrom(`/posts/${id}`)
+  return post
+}
+
+function patchPostFor(id, data) {
+  patchDataFor(`/posts/${id}`, data)
 }
 
 function createBlogTitle(blogEntry) {

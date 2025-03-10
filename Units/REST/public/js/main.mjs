@@ -1,4 +1,4 @@
-import { getData } from './rest.mjs'
+import { setServerUrl, getDataFrom } from './rest.mjs'
 import { renderBlogEntries } from './html-renderer.mjs'
 
 document.body.onload = async function() {
@@ -7,12 +7,14 @@ document.body.onload = async function() {
 
     const closeSidebarItems = document.querySelector('#my-sidebar').childNodes
     closeSidebarItems.forEach(item => item.addEventListener('click', hideSidebar))
-    const entries = await loadDataFromServer()
+
+    setServerUrl('http://localhost:3000')
+    const entries = await loadPostsFromServer()
     renderBlogEntries(entries)
 }
 
-async function loadDataFromServer() {
-    const blogEntries = await getData("http://localhost:3000/posts")
+async function loadPostsFromServer() {
+    const blogEntries = await getDataFrom('/posts')
     return blogEntries
 }
 
