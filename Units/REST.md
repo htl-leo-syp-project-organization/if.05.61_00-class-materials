@@ -265,7 +265,7 @@ Now we want to add the functionality that one can like a blog entry. So we have 
 Not to surprisingly this function has to be called in the `renderOneGridCell` function and the returned `img` element has to be appended to the surrounding `div` holding all grid cell elements together.
 
 ### React on a Click on the Like Icon
-
+We have to add an event listener to our `likeSymbol` in order to react on a click properly.
  ```Javascript
  function createLikeSymbol(blogEntry) {
   const likeSymbol=document.createElement('img')
@@ -295,4 +295,49 @@ Not to surprisingly this function has to be called in the `renderOneGridCell` fu
 }
  ```
 
-[Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+### PATCH Call to Store the Like
+Finally we will store the like in the backend.
+```js
+function createLikeSymbol(blogEntry) {
+  const likeSymbol=document.createElement('img')
+  if (blogEntry.likes > 0) {
+    likeSymbol.src='images/heart-red.png'
+  } else {
+    likeSymbol.src='images/heart-empty.png'
+  }
+  likeSymbol.alt='like symbol'
+  likeSymbol.style.width='20px'
+  likeSymbol.style.height='20px'
+  likeSymbol.style.position='relative'
+  likeSymbol.style.left='46.5%'
+  likeSymbol.style.top='0px'
+  likeSymbol.style.zIndex='1'
+  likeSymbol.style.cursor='pointer'
+  likeSymbol.addEventListener('click', () => {
+    const patchObject = {
+      id: likeSymbol.parentElement.id,
+      likes: blogEntry.likes
+    }
+    if (blogEntry.likes > 0) {
+      likeSymbol.src='images/heart-empty.png'
+      blogEntry.likes = 0
+      patchObject.likes = 0
+    } else {
+      likeSymbol.src='images/heart-red.png'
+      blogEntry.likes = 1
+      patchObject.likes = 1
+    }
+    patchPostFor(likeSymbol.parentElement.id, patchObject)
+  })
+  return likeSymbol
+}
+```
+**One remark:** Since we wanted to show how to work send REST requests from a JavaScript frontend to a backend we did a few ugly hacks. These shall be fixed in the next unit.
+
+1. Creating an object and sending it to the REST server in the middle of HTML rendering code is a real no-go.
+2. Having a dependency from the html-renderer to the rest functionality is also a problematic situation.
+3. Storing the id of the blog entry as an id in the html element is also a rather weird hack.
+
+As already mentioned, we will take care of this in the next weeks.
+
+The [Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) shows the usage of the remaining request.
