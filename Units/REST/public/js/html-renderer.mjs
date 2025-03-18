@@ -79,11 +79,6 @@ function createLikeSymbol(blogEntry) {
   return likeSymbol
 }
 
-function getPostFrom(id) {
-  const post = getDataFrom(`/posts/${id}`)
-  return post
-}
-
 function patchPostFor(id, data) {
   patchDataFor(`/posts/${id}`, data)
 }

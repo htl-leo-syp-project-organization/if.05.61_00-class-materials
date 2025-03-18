@@ -296,7 +296,7 @@ We have to add an event listener to our `likeSymbol` in order to react on a clic
  ```
 
 ### PATCH Call to Store the Like
-Finally we will store the like in the backend.
+Finally we will store the like in the backend. As a preparation work we create a `patchObject` where we store the data we want to patch, in our case this is basically the number of likes. This number has to be adapted if a click on the `likeSymbol` happens. Finally we call a function `patchPostFor` which will be described in the sequel.
 ```js
 function createLikeSymbol(blogEntry) {
   const likeSymbol=document.createElement('img')
@@ -332,6 +332,10 @@ function createLikeSymbol(blogEntry) {
   return likeSymbol
 }
 ```
+
+`patchPostFor` accepts the id of the blog entry to be patched and the patch object itself.
+
+
 **One remark:** Since we wanted to show how to work send REST requests from a JavaScript frontend to a backend we did a few ugly hacks. These shall be fixed in the next unit.
 
 1. Creating an object and sending it to the REST server in the middle of HTML rendering code is a real no-go.
