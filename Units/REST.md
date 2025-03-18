@@ -262,10 +262,11 @@ Now we want to add the functionality that one can like a blog entry. So we have 
   return likeSymbol
 }
  ```
+Not to surprisingly this function has to be called in the `renderOneGridCell` function and the returned `img` element has to be appended to the surrounding `div` holding all grid cell elements together.
 
 ### React on a Click on the Like Icon
 
- ```Javascript #14-20
+ ```Javascript
  function createLikeSymbol(blogEntry) {
   const likeSymbol=document.createElement('img')
   if (blogEntry.likes > 0) {
