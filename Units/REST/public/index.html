@@ -12,7 +12,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 </style>
 </head>
-<body>    
+<body>
+  <script type="module" src="/js/main.mjs"></script>
+
 <!-- Sidebar (hidden by default) -->
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:10%;min-width:200px" id="my-sidebar">
   <a href="javascript:void(0)" class="w3-bar-item w3-button">Close Menu</a>
@@ -33,17 +35,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px" id="food-grid">
 </div>
 
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
+<!-- Pagination -->
+<div class="w3-center w3-padding-32">
+  <div class="w3-bar">
+    <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+    <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+    <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+    <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+    <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+    <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
   </div>
+</div>
   
   <hr id="about">
 
@@ -57,6 +59,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
     </div>
   </div>
+
   <hr>
   
   <!-- Footer -->
@@ -94,10 +97,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       </p>
     </div>
   </footer>
-
 <!-- End page content -->
 </div>
-
-<script type="module" src="/js/main.mjs"></script>
 </body>
 </html>
