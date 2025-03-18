@@ -46,7 +46,7 @@ Since we plan to add more JavaScript to our little project we want to get rid of
 5. Add a `document.body.onload` trigger to the module where you add the `onclick` event listeners to the burger menu button and the side bar items.
 6. Add a script tag `<script type="module" src="/js/main.mjs"></script>` at the end of the body.
 
-### JavaScript Fetch API to Get Data from Server
+### JavaScript Fetch API to Get Data from Backend
 We begin this part by fixing our playground db we used at the very beginning of this lesson. So lets replace the content of the file `db.json` by some nice food data we need for our project here.
 
 ```json
@@ -143,12 +143,12 @@ We begin this part by fixing our playground db we used at the very beginning of 
 Now we are ready to fetch data from our json-server.
 
 1. Create a module `rest.mjs`
-2. Export an async function `getData(fromUrl)`
+2. Export an async function `getDataFrom(url)`
    
 ```JavaScript
-export async function getData(fromUrl) {
+export async function getDataFrom(url) {
     try {
-      const response = await fetch(fromUrl);
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -171,10 +171,11 @@ Now we can call this function in the `onload` trigger and check whether data is 
 ```JavaScript
 import { getData } from "./rest.mjs"
 ...
-const entries = await getData('http://localhost:3000/posts')
+const entries = await getDataFrom('http://localhost:3000/posts')
 console.log(entries)
 ```
 
+### DOM Manipulation to Get Data Rendered
 Finally we want to render the loaded data into our website. We start by analyzing the structure of the blog display part in `index.html`. We see that all blog entries are placed in a `div` container (the one after the comment line `<!-- !PAGE CONTENT! -->`).
 
 The two rows are again represented by a `div` which itself contains four cells (one for every blog entry) again represented by a `div`.
@@ -232,4 +233,65 @@ function renderOneGridCell(blogEntry) {
   return newDiv
 }
 ```
+
+### JavaScript Fetch API to Change Data in Backend
+Now we want to add the functionality that one can like a blog entry. So we have to add
+- an icon suggesting that we can like an entry
+- the functionality to react on a click on this icon
+- the REST call to store our click on the server
+
+### Add an Icon
+ First we put the usual like images (an [empty](./REST/public/images/heart-empty.png) and a [filled heart](./REST/public/images/heart-red.png)) into our image folder. Now we are ready to add the code to generate the html for showing the like symbol. Since there is already some complexity in it we extract it in a separate function. The function accepts a `blogEntry` as parameter. Based on this it can implement the logic to display a filled or empty heart symbol. The remainder of the function is straight forward CSS fiddling to place the like symbol properly.
+
+ ```Javascript
+ function createLikeSymbol(blogEntry) {
+  const likeSymbol=document.createElement('img')
+  if (blogEntry.likes > 0) {
+    likeSymbol.src='images/heart-red.png'
+  } else {
+    likeSymbol.src='images/heart-empty.png'
+  }
+  likeSymbol.alt='like symbol'
+  likeSymbol.style.width='20px'
+  likeSymbol.style.height='20px'
+  likeSymbol.style.position='relative'
+  likeSymbol.style.left='46.5%'
+  likeSymbol.style.top='0px'
+  likeSymbol.style.zIndex='1'
+  likeSymbol.style.cursor='pointer'
+  return likeSymbol
+}
+ ```
+
+### React on a Click on the Like Icon
+
+ ```Javascript #14-20
+ function createLikeSymbol(blogEntry) {
+  const likeSymbol=document.createElement('img')
+  if (blogEntry.likes > 0) {
+    likeSymbol.src='images/heart-red.png'
+  } else {
+    likeSymbol.src='images/heart-empty.png'
+  }
+  likeSymbol.alt='like symbol'
+  likeSymbol.style.width='20px'
+  likeSymbol.style.height='20px'
+  likeSymbol.style.position='relative'
+  likeSymbol.style.left='46.5%'
+  likeSymbol.style.top='0px'
+  likeSymbol.style.zIndex='1'
+  likeSymbol.style.cursor='pointer'
+  likeSymbol.addEventListener('click', () => {
+    if (blogEntry.likes > 0) {
+      likeSymbol.src='images/heart-empty.png'
+      blogEntry.likes = 0
+    } else {
+      likeSymbol.src='images/heart-red.png'
+      blogEntry.likes = 1
+    }
+  })
+  return likeSymbol
+}
+ ```
+
 [Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
