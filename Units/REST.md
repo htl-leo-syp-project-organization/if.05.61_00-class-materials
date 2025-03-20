@@ -377,6 +377,6 @@ One can see that the structure of this function is very similar to the one sendi
 2. Having a dependency from the html-renderer to the rest functionality is also a problematic situation.
 3. Storing the id of the blog entry as an id in the html element is also a rather weird hack.
 
-As already mentioned, we will take care of this in the next weeks.
+As already mentioned, we will take care of this in the next weeks. For all who somehow lost track during this tutorial here is the link to the [project directory holding the complete source](./REST/).
 
 The [Complete Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) shows the usage of the remaining request.
