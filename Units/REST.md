@@ -238,7 +238,11 @@ function renderOneGridCell(blogEntry) {
 Now we want to add the functionality that one can like a blog entry. So we have to add
 - an icon suggesting that we can like an entry
 - the functionality to react on a click on this icon
-- the REST call to store our click on the server
+- the REST call to store our click on the server.
+
+One more little thing must be fixed before we can start: We have to store the id somewhere in order to be able to address the displayed blog post in our backend. We do this simply by setting an `id` attribute for each `gridCell` to the id we get from the backend. This can be done easily in the function `renderOneGridCell` by adding the line `newDiv.id = blogEntry.id`.
+
+We want to mention here that this is not the way to go in a larger project and we will refactor this in one of the following units but for the time being it is our easiest solution and we want to concentrate on getting our REST requests done. Time for beauty and clear design will come later. Promised!
 
 ### Add an Icon
  First we put the usual like images (an [empty](./REST/public/images/heart-empty.png) and a [filled heart](./REST/public/images/heart-red.png)) into our image folder. Now we are ready to add the code to generate the html for showing the like symbol. Since there is already some complexity in it we extract it in a separate function. The function accepts a `blogEntry` as parameter. Based on this it can implement the logic to display a filled or empty heart symbol. The remainder of the function is straight forward CSS fiddling to place the like symbol properly.
@@ -331,10 +335,41 @@ function createLikeSymbol(blogEntry) {
   })
   return likeSymbol
 }
+
+function patchPostFor(id, data) {
+  patchDataFor(`/posts/${id}`, data)
+}
 ```
 
-`patchPostFor` accepts the id of the blog entry to be patched and the patch object itself.
+`patchPostFor` accepts the id of the blog entry to be patched and the patch object itself. The function then calls a function in `rest.mjs` which is called `patchDataFor`.
 
+One can see that the structure of this function is very similar to the one sending the `GET` request. The real difference is that we provide a second parameter for `fetch` describing the payload of the request, namely
+1. the method (in our case `PATCH`)
+2. the headers (telling the server that it should expect content in json format)
+3. the body (the data accepted by the function converted to json).
+
+```js
+  export async function patchDataFor(resource, data) {
+    try {
+      const response = await fetch(`http://localhost:3000${resource}`,
+        {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const json = await response.json();
+      return json
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+```
 
 **One remark:** Since we wanted to show how to work send REST requests from a JavaScript frontend to a backend we did a few ugly hacks. These shall be fixed in the next unit.
 
