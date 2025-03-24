@@ -1,0 +1,30 @@
+<template id="blog-template">
+    <style>
+      article {
+        border: 1px solid #ccc;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-family: sans-serif;
+      }
+      img {
+        max-width: 100%;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        color: gray;
+      }
+      button.liked {
+        color: red;
+      }
+    </style>
+    <article>
+      <img part="image">
+      <h2 part="title"></h2>
+      <p part="text"></p>
+      <button part="like">♥</button>
+    </article>
+  </template>
+  

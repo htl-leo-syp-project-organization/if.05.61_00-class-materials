@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <title>Web Components</title>
+</head>
+<html>
+    <body>
+        <h1>Web Components</h1>
+        <script type="module" src="time-formatted.mjs"></script>
+        <script type="module" src="countdown-timer.mjs"></script>
+        <time-formatted></time-formatted> <br>
+        <time-formatted datetime="2020-01-01T00:00:00Z"></time-formatted> <br>
+        <countdown-timer end-date="2025-12-31T23:59:59Z">Time until year ends: </countdown-timer> <br>
+        <blog-grid-cell><script>blogEntry</script></blog-grid-cell>
+        <!-- <time-formatted id="time"></time-formatted>
+
+        <script>
+            setInterval(() => {
+                const el = document.querySelector('#time')
+                el.setAttribute('datetime', new Date().toISOString())
+            }, 1000)
+        </script>
+    -->
+
+        <script>
+            const blogEntry = {
+                title: "Why I love Web Components",
+                text: "They’re so modular and clean...",
+                imageUrl: "some-image.jpg",
+                liked: false
+            }
+        </script>
+    </body>
+</html>
