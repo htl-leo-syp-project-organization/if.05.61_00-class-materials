@@ -1,3 +1,5 @@
+import { attachStylesheetTo } from '../utilities.mjs'
+
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
@@ -31,20 +33,33 @@ template.innerHTML = `
 class FoodBlogEntry extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: 'open'})
+        attachStylesheetTo(this)
+        this.cloneAndAppendTemplate()
+        const data = this.getDataFromElement()
+        this.populateChildElementsWith(data)
+    }
 
-        const link = document.createElement('link')
-        link.setAttribute('rel', 'stylesheet')
-        link.setAttribute('href', 'https://www.w3schools.com/w3css/4/w3.css')
-        this.shadowRoot.appendChild(link)
+    getDataFromElement() {
+        const jsonData = this.querySelector('script')
+        let element = {}
+        if (jsonData) {
+            element = JSON.parse(jsonData.childNodes[0].nodeValue)
+        }
+        return element
+    }
 
-        const clone = document.importNode(template.content, true)
+    cloneAndAppendTemplate() {
+        const clone=document.importNode(template.content, true)
         this.shadowRoot.appendChild(clone)
-        const data = JSON.parse(this.querySelector('script').childNodes[0].nodeValue)
-        this.shadowRoot.querySelector('img').src = data.imageUrl
-        this.shadowRoot.querySelector('h2').textContent = data.title
-        this.shadowRoot.querySelector('p').textContent = data.text
-        this.shadowRoot.querySelector('button').addEventListener('click', () => {
-            this.shadowRoot.querySelector('button').classList.toggle('liked')
+    }
+
+    populateChildElementsWith(data) {
+        this.shadowRoot.querySelector('img').src=data.imageUrl
+        this.shadowRoot.querySelector('h2').textContent=data.title
+        this.shadowRoot.querySelector('p').textContent=data.text
+        const button = this.shadowRoot.querySelector('button')
+        button.addEventListener('click', () => {
+            button.classList.toggle('liked')
         })
     }
 }
