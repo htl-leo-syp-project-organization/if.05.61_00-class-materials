@@ -35,8 +35,8 @@ class FoodBlogEntry extends HTMLElement {
         this.attachShadow({mode: 'open'})
         attachStylesheetTo(this)
         this.cloneAndAppendTemplate()
-        const data = this.getDataFromElement()
-        this.populateChildElementsWith(data)
+        this.data = this.getDataFromElement()
+        this.populateChildElementsWith(this.data)
     }
 
     getDataFromElement() {
@@ -61,6 +61,22 @@ class FoodBlogEntry extends HTMLElement {
         button.addEventListener('click', () => {
             button.classList.toggle('liked')
         })
+    }
+
+    set data(newValue) {
+        this._data = new Proxy(newValue, {
+            set: (target, property, value) => {
+                target[property] = value
+                this.populateChildElementsWith(this.data)
+                return true
+            }
+        })
+        console.log(newValue)
+        this.populateChildElementsWith(this.data)
+    }
+
+    get data() {
+        return this._data
     }
 }
 
