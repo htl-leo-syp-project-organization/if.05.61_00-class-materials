@@ -35,11 +35,27 @@ class FoodBlogEntry extends HTMLElement {
         this.attachShadow({mode: 'open'})
         attachStylesheetTo(this)
         this.cloneAndAppendTemplate()
+        this.queryAllElements()
+        this.button.addEventListener('click', () => {
+            console.log('button clicked')
+            this.data.liked = !this.data.liked
+        })
         this.data = this.getDataFromElement()
-        this.populateChildElementsWith(this.data)
     }
 
-    getDataFromElement() {
+    cloneAndAppendTemplate() {
+        const clone=document.importNode(template.content, true)
+        this.shadowRoot.appendChild(clone)
+    }
+
+    queryAllElements() {
+        this.image = this.shadowRoot.querySelector('img')
+        this.headline = this.shadowRoot.querySelector('h2')
+        this.text = this.shadowRoot.querySelector('p')
+        this.button = this.shadowRoot.querySelector('button')
+    }
+
+   getDataFromElement() {
         const jsonData = this.querySelector('script')
         let element = {}
         if (jsonData) {
@@ -48,19 +64,17 @@ class FoodBlogEntry extends HTMLElement {
         return element
     }
 
-    cloneAndAppendTemplate() {
-        const clone=document.importNode(template.content, true)
-        this.shadowRoot.appendChild(clone)
-    }
-
     populateChildElementsWith(data) {
         this.shadowRoot.querySelector('img').src=data.imageUrl
         this.shadowRoot.querySelector('h2').textContent=data.title
         this.shadowRoot.querySelector('p').textContent=data.text
         const button = this.shadowRoot.querySelector('button')
-        button.addEventListener('click', () => {
-            button.classList.toggle('liked')
-        })
+        if (data.liked) {
+            button.classList.add('liked')
+        } else {
+            button.classList.remove('liked')
+        }
+        console.log('data.liked:', data.liked)
     }
 
     set data(newValue) {
@@ -71,7 +85,6 @@ class FoodBlogEntry extends HTMLElement {
                 return true
             }
         })
-        console.log(newValue)
         this.populateChildElementsWith(this.data)
     }
 
