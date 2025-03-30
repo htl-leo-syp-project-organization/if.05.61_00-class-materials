@@ -30,7 +30,7 @@ template.innerHTML = `
       <button part="like">♥</button>
     </article>
 `
-class FoodBlogEntry extends HTMLElement {
+class FoodBlogEntryView extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: 'open'})
         attachStylesheetTo(this)
@@ -95,4 +95,4 @@ class FoodBlogEntry extends HTMLElement {
     }
 }
 
-customElements.define('food-blog-entry', FoodBlogEntry);
+customElements.define('food-blog-entry', FoodBlogEntryView);
