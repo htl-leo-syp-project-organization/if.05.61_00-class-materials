@@ -1,4 +1,4 @@
-import { attachStylesheetTo } from '../utilities.mjs'
+import { attachStylesheetTo } from '../js/general/utilities.mjs'
 
 const template = document.createElement('template')
 template.innerHTML = `
