@@ -67,11 +67,12 @@ class FoodBlogEntry extends HTMLElement {
         return element
     }
 
-    populateChildElementsWith(data) {
-        this.image.src=data.imageUrl
-        this.headline.textContent=data.title
-        this.text.textContent=data.text
-        if (data.liked) {
+    populateChildElements() {
+        const actualData = this.data
+        this.image.src=actualData.imageUrl
+        this.headline.textContent=actualData.title
+        this.text.textContent=actualData.text
+        if (actualData.liked) {
             this.button.classList.add('liked')
         } else {
             this.button.classList.remove('liked')
@@ -82,11 +83,11 @@ class FoodBlogEntry extends HTMLElement {
         this._data = new Proxy(newValue, {
             set: (target, property, value) => {
                 target[property] = value
-                this.populateChildElementsWith(this.data)
+                this.populateChildElements()
                 return true
             }
         })
-        this.populateChildElementsWith(this.data)
+        this.populateChildElements()
     }
 
     get data() {
