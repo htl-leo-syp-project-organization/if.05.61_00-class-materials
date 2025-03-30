@@ -36,11 +36,14 @@ class FoodBlogEntry extends HTMLElement {
         attachStylesheetTo(this)
         this.cloneAndAppendTemplate()
         this.queryAllElements()
-        this.button.addEventListener('click', () => {
-            console.log('button clicked')
-            this.data.liked = !this.data.liked
-        })
+        this.addClickHandlerToLikeButton()
         this.data = this.getDataFromElement()
+    }
+
+    addClickHandlerToLikeButton() {
+        this.button.addEventListener('click', () => {
+            this.data.liked=!this.data.liked
+        })
     }
 
     cloneAndAppendTemplate() {
@@ -65,16 +68,14 @@ class FoodBlogEntry extends HTMLElement {
     }
 
     populateChildElementsWith(data) {
-        this.shadowRoot.querySelector('img').src=data.imageUrl
-        this.shadowRoot.querySelector('h2').textContent=data.title
-        this.shadowRoot.querySelector('p').textContent=data.text
-        const button = this.shadowRoot.querySelector('button')
+        this.image.src=data.imageUrl
+        this.headline.textContent=data.title
+        this.text.textContent=data.text
         if (data.liked) {
-            button.classList.add('liked')
+            this.button.classList.add('liked')
         } else {
-            button.classList.remove('liked')
+            this.button.classList.remove('liked')
         }
-        console.log('data.liked:', data.liked)
     }
 
     set data(newValue) {
