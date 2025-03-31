@@ -31,19 +31,24 @@ template.innerHTML = `
     </article>
 `
 class FoodBlogEntryView extends HTMLElement {
+    constructor() {
+        super()
+    }
+
+    set foodBlogEntry(newValue) {
+        this._viewModel = newValue
+        this._viewModel.subscribe(() => {
+            this.populateChildElements()
+        })
+        this.populateChildElements()
+    }
+
     connectedCallback() {
         this.attachShadow({mode: 'open'})
         attachStylesheetTo(this)
         this.cloneAndAppendTemplate()
         this.queryAllElements()
         this.addClickHandlerToLikeButton()
-        this.data = this.getDataFromElement()
-    }
-
-    addClickHandlerToLikeButton() {
-        this.button.addEventListener('click', () => {
-            this.data.liked=!this.data.liked
-        })
     }
 
     cloneAndAppendTemplate() {
@@ -58,17 +63,14 @@ class FoodBlogEntryView extends HTMLElement {
         this.button = this.shadowRoot.querySelector('button')
     }
 
-   getDataFromElement() {
-        const jsonData = this.querySelector('script')
-        let element = {}
-        if (jsonData) {
-            element = JSON.parse(jsonData.childNodes[0].nodeValue)
-        }
-        return element
+    addClickHandlerToLikeButton() {
+        this.button.addEventListener('click', () => {
+            this._viewModel.toggleLike()
+        })
     }
-
+    
     populateChildElements() {
-        const actualData = this.data
+        const actualData = this._viewModel.data
         this.image.src=actualData.imageUrl
         this.headline.textContent=actualData.title
         this.text.textContent=actualData.text
