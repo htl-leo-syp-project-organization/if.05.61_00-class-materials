@@ -80,21 +80,6 @@ class FoodBlogEntryView extends HTMLElement {
             this.button.classList.remove('liked')
         }
     }
-
-    set data(newValue) {
-        this._data = new Proxy(newValue, {
-            set: (target, property, value) => {
-                target[property] = value
-                this.populateChildElements()
-                return true
-            }
-        })
-        this.populateChildElements()
-    }
-
-    get data() {
-        return this._data
-    }
 }
 
 customElements.define('food-blog-entry', FoodBlogEntryView);
