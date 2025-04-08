@@ -37,10 +37,6 @@ class FoodBlogEntryView extends HTMLElement {
 
     set foodBlogEntry(newValue) {
         this._viewModel = newValue
-        this._viewModel.subscribe(() => {
-            this.populateChildElements()
-        })
-        this.populateChildElements()
     }
 
     connectedCallback() {
@@ -48,6 +44,14 @@ class FoodBlogEntryView extends HTMLElement {
         attachStylesheetTo(this)
         this.cloneAndAppendTemplate()
         this.queryAllElements()
+        if (this._viewModel) {
+            console.log('viewModel is set:', this._viewModel);
+            this._viewModel.subscribe(() => this.populateChildElements())
+            this.populateChildElements()
+    
+        } else {
+            console.warn('No viewModel set for foodBlogEntry')
+        }
         this.addClickHandlerToLikeButton()
     }
 

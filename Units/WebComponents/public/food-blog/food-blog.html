@@ -8,14 +8,15 @@
 </head>
 <body>
 
-    <div class="w3-row w3-border">
-        <food-blog-entry>
-        </food-blog-entry>
-    </div>
+    <h-stack class="w3-row w3-border">
+      <food-blog-entry>
+      </food-blog-entry>
+    </h-stack>
 
     <button id="update-button">Update Food Blog Entry</button>
 
-    <script type="module" src="./components/food-blog-entry-view.mjs"></script>
     <script type="module" src="./js/food-blog.mjs"></script>
+    <script type="module" src="./components/h-stack.mjs"></script>
+    <script type="module" src="./components/food-blog-entry-view.mjs"></script>
 </body>
 </html>
