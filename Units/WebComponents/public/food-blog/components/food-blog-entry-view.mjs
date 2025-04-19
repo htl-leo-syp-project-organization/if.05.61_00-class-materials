@@ -45,7 +45,6 @@ class FoodBlogEntryView extends HTMLElement {
         this.cloneAndAppendTemplate()
         this.queryAllElements()
         if (this._viewModel) {
-            console.log('viewModel is set:', this._viewModel);
             this._viewModel.subscribe(() => this.populateChildElements())
             this.populateChildElements()
     

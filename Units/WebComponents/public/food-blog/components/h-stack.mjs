@@ -18,11 +18,7 @@ class HStack extends HTMLElement {
         const childTemplate = this._childTemplateNode
 
         actualData.forEach((child) => {
-            console.log('child:', child);
-            console.log('toggleLike is function:', typeof child.toggleLike === 'function');
             const childTemplateClone = document.importNode(childTemplate, true)
-            console.log('clone is:', childTemplateClone.constructor.name)
-            console.log('Has setter:', 'foodBlogEntry' in childTemplateClone)
             childTemplateClone.foodBlogEntry = child
             this.shadowRoot.appendChild(childTemplateClone)    
         })
@@ -42,7 +38,6 @@ class HStack extends HTMLElement {
 
     prepareChildTemplate() {
         const childTemplate = this.querySelector('*')
-        console.log('Template tag:', childTemplate.tagName);
         this._childTemplateNode = childTemplate.cloneNode(true)
         childTemplate.remove()
     }
