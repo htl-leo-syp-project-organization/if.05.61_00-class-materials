@@ -49,7 +49,7 @@ class FoodBlogEntryView extends HTMLElement {
             this.populateChildElements()
     
         } else {
-            console.warn('No viewModel set for foodBlogEntry')
+            this.showMissingViewModelWarning()
         }
         this.addClickHandlerToLikeButton()
     }
@@ -83,6 +83,14 @@ class FoodBlogEntryView extends HTMLElement {
             this.button.classList.remove('liked')
         }
     }
+
+    showMissingViewModelWarning() {
+        this.headline.textContent = 'No viewModel set for foodBlogEntry'
+        this.text.textContent = 'Provide data via the foodBlogEntry property.'
+        console.warn('No viewModel set for foodBlogEntry')
+        this.headline.style.color = 'red'
+        this.button.disabled = true
+    }
 }
 
-customElements.define('food-blog-entry', FoodBlogEntryView);
+customElements.define('food-blog-entry', FoodBlogEntryView)
