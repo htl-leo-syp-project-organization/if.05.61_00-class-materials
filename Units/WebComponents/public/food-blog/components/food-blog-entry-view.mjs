@@ -47,11 +47,10 @@ class FoodBlogEntryView extends HTMLElement {
         if (this._viewModel) {
             this._viewModel.subscribe(() => this.populateChildElements())
             this.populateChildElements()
-    
+            this.addClickHandlerToLikeButton()
         } else {
             this.showMissingViewModelWarning()
         }
-        this.addClickHandlerToLikeButton()
     }
 
     cloneAndAppendTemplate() {
@@ -89,7 +88,6 @@ class FoodBlogEntryView extends HTMLElement {
         this.text.textContent = 'Provide data via the foodBlogEntry property.'
         console.warn('No viewModel set for foodBlogEntry')
         this.headline.style.color = 'red'
-        this.button.disabled = true
     }
 }
 

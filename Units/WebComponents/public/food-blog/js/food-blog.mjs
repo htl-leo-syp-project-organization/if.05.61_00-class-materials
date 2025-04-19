@@ -28,9 +28,4 @@ window.onload = function() {
 
     const view = document.querySelector('h-stack')
     view.viewModel = foodBlogEntries
-
-    const updateButton = document.querySelector('#update-button')
-    updateButton.addEventListener('click', () => {
-        foodBlogEntry.toggleLike()
-    })
 }

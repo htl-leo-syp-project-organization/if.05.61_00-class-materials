@@ -10,7 +10,13 @@ template.innerHTML = `
 class HStack extends HTMLElement {
     set viewModel(newValue) {
         this._viewModel = newValue
+        this.removeExistingChildElements()
         this.addChildElements()
+    }
+
+    removeExistingChildElements() {
+        const container=this.shadowRoot.querySelector('div')
+        container.innerHTML=''
     }
 
     addChildElements() {
